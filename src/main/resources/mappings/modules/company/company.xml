@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etycx.marry.modules.company.dao.CompanyDao">
+
+
+
+	<select id="selectCompany" resultType="MarryCompany">
+		select id,main_pic mainPic,name,title,introduction,culture_pic culturePic,cellPhone,worth_pic worthPic,code,development,address,allnumber,serverTime servertime,create_time  from marry_company where state=#{state} order by create_time DESC
+	</select>
+
+	<select id="selectCompanyList" resultType="MarryCompany">
+		select id,main_pic mainPic,name,title,introduction,culture_pic culturePic,cellPhone,worth_pic worthPic,code,development,address,allnumber,serverTime servertime,create_time  from marry_company  order by create_time DESC
+	</select>
+
+	<sql id="marryCompanyColumns">
+		a.id AS "id",
+		a.main_pic AS "mainPic",
+		a.name AS "name",
+		a.title AS "title",
+		a.introduction AS "introduction",
+		a.culture_pic AS "culturePic",
+		a.worth_pic AS "worthPic",
+		a.development AS "development",
+		a.allnumber AS "allnumber",
+		a.servertime AS "servertime",
+		a.address AS "address",
+		a.code AS "code",
+		a.cellphone AS "cellphone",
+		a.create_time AS "createTime",
+		a.state AS "state"
+	</sql>
+
+	<sql id="marryCompanyJoins">
+	</sql>
+
+	<select id="get" resultType="MarryCompany">
+		SELECT
+		<include refid="marryCompanyColumns"/>
+		FROM marry_company a
+		<include refid="marryCompanyJoins"/>
+		WHERE a.id = #{id}
+	</select>
+
+	<select id="findList" resultType="MarryCompany">
+		SELECT
+		<include refid="marryCompanyColumns"/>
+		FROM marry_company a
+		<include refid="marryCompanyJoins"/>
+		<where>
+
+			<if test="name != null and name != ''">
+				AND a.name LIKE
+				<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
+				<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
+				<if test="dbName == 'mysql'">concat('%',#{name},'%')</if>
+			</if>
+			<if test="title != null and title != ''">
+				AND a.title LIKE
+				<if test="dbName == 'oracle'">'%'||#{title}||'%'</if>
+				<if test="dbName == 'mssql'">'%'+#{title}+'%'</if>
+				<if test="dbName == 'mysql'">concat('%',#{title},'%')</if>
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+
+	<select id="findAllList" resultType="MarryCompany">
+		SELECT
+		<include refid="marryCompanyColumns"/>
+		FROM marry_company a
+		<include refid="marryCompanyJoins"/>
+		<where>
+
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+
+	<insert id="insert">
+		INSERT INTO marry_company(
+			main_pic,
+			name,
+			title,
+			introduction,
+			culture_pic,
+			worth_pic,
+			development,
+			allnumber,
+			servertime,
+			address,
+			code,
+			cellphone,
+			create_time,
+			state
+		) VALUES (
+			#{mainPic},
+			#{name},
+			#{title},
+			#{introduction},
+			#{culturePic},
+			#{worthPic},
+			#{development},
+			#{allnumber},
+			#{servertime},
+			#{address},
+			#{code},
+			#{cellphone},
+			#{createTime},
+			#{state}
+		)
+	</insert>
+
+	<update id="update">
+		UPDATE marry_company SET
+			main_pic = #{mainPic},
+			name = #{name},
+			title = #{title},
+			introduction = #{introduction},
+			culture_pic = #{culturePic},
+			worth_pic = #{worthPic},
+			development = #{development},
+			allnumber = #{allnumber},
+			servertime = #{servertime},
+			address = #{address},
+			code = #{code},
+			cellphone = #{cellphone},
+			create_time = #{createTime},
+			state = #{state}
+		WHERE id = #{id}
+	</update>
+
+	<update id="delete">
+		DELETE FROM marry_company
+		WHERE id = #{id}
+	</update>
+
+</mapper>

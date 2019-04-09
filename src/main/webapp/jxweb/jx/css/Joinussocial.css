@@ -1,0 +1,130 @@
+@import './header.css';
+@import './banner.css';
+@import './navigation.css';
+@import './commonlist.css';
+@import './pagelist.css';
+@import './footer.css';
+
+
+
+
+.content {
+	width: 1200px;
+	margin: 30px auto 50px;
+}
+.table-title {
+	height: 64px;
+	background: #b12f2a;
+	display: flex;
+	color: #fff;
+}
+.table-title .s-1 {
+	width: calc(100% / 5.3);
+	font-size: 14px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.table-ul {
+	width: 100%;
+	height: auto;
+	/*border: 1px solid blue;*/
+}
+
+.table-ul .table-li {
+	border: 1px solid #d8d8d8;
+	border-top: none;
+	cursor: pointer;
+}
+.table-ul .table-li .table-li-1 {
+	/*border-bottom: 1px solid #d8d8d8;*/
+	display: flex;
+	height: 75px;
+}
+.table-ul .table-li .table-li-1-on {
+	border-bottom: 1px solid #d8d8d8;
+	background: #f7f7f7;
+}
+
+.table-ul .table-li .table-li-1 .table-li-1-1 {
+	width: calc(100% / 5.3);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 14px;
+	color: #666;
+	position: relative;
+}
+.table-ul .table-li .table-li-1 .table-li-1-1:last-child .icon-shipinbofang{
+	position: absolute;
+	width: 27px;
+	height: 27px;
+	background: #b12f2a;
+	border-radius: 4px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transform: rotateZ(90deg);
+	color: #fff;
+	right: -20px;
+}
+.table-ul .table-li .table-li-1 .table-li-1-1:last-child .active {
+	transform: rotateZ(-90deg);
+}
+.table-ul .table-li .table-li-2 {
+	padding: 0 80px 30px;
+	display: flex;
+	flex-wrap: wrap;
+}
+.table-ul .table-li .operable {
+	display: none;
+}
+.table-ul .active .operable {
+	display: block;
+}
+.table-ul .active .table-li-1 {
+	background: #f7f7f7;
+}
+.table-ul .active .table-li-1 .table-li-1-1:last-child .icon-shipinbofang {
+	transform: rotateZ(-90deg);
+}
+.table-ul .table-li .table-li-2 .dl {
+	width: calc(100% / 2);
+	display: flex;
+	margin: 30px 0 0;
+}
+.table-ul .table-li .table-li-2 .dl dt {
+	font-size: 14px;
+	line-height: 14px;
+	margin: 0 15px 0 0;
+	font-weight: 700;
+}
+.table-ul .table-li .table-li-2 .dl dd {
+	font-size: 14px;
+	line-height: 14px;
+}
+.table-ul .table-li .table-li-2 .dl dd p {
+	margin: 16px 0 0 0;
+	font-size: 14px;
+	line-height: 14px;
+}
+.table-ul .table-li .table-li-2 .dl dd p:first-child {
+	margin: 0;
+}
+.table-ul .table-li .table-li-2 .dl-3 {
+	width: 100%;
+}
+.table-ul .table-li .table-li-2 .dl-4 {
+	width: 100%;
+}
+.table-ul .table-li .table-li-2 .dl-5 dd {
+	color: #b12f2a;
+}
+
+.table-ul .table-li:hover .table-li-1 {
+	background: #f7f7f7;
+}
+
+.page-wrapper {
+	margin: 30px auto 0;
+}

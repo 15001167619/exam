@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etycx.marry.modules.operation.dao.MarryOperationDao">
+
+	<sql id="marryOperationColumns">
+		a.id AS "id",
+		a.business_type AS "businessType",
+		a.business_id AS "businessId",
+		a.user_id AS "userId",
+		a.create_time AS "createTime"
+	</sql>
+
+	<sql id="marryOperationJoins">
+	</sql>
+
+	<select id="get" resultType="MarryOperation">
+		SELECT
+		<include refid="marryOperationColumns"/>
+		FROM marry_operation a
+		<include refid="marryOperationJoins"/>
+		WHERE a.id = #{id}
+	</select>
+
+	<select id="findList" resultType="MarryOperation">
+		SELECT
+		<include refid="marryOperationColumns"/>
+		FROM marry_operation a
+		<include refid="marryOperationJoins"/>
+		<where>
+			<if test="businessType != null">
+				a.business_type = #{businessType}
+			</if>
+			<if test="userId != null and userId != ''">
+				AND a.user_id = #{userId}
+			</if>
+			<if test="businessId != null and businessId != ''">
+				AND a.business_id = #{businessId}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+
+	<select id="findProductList" resultType="MarryOperation" parameterType="map">
+		select * from (
+		select mo.business_type  as businessType,mo.business_id as businessId,mo.user_id as userId,mp.`type`,mp.name,mp.brief,mp.cover_path as coverPath from marry_operation mo,marry_product mp
+		where mo.business_id = mp.id
+		order by mo.create_time desc
+		) productInfo
+		<where>
+			<if test="businessType != null">
+				productInfo.businessType = #{businessType}
+			</if>
+			<if test="userId != null and userId != ''">
+				AND productInfo.userId = #{userId}
+			</if>
+			<if test="type != null">
+				AND productInfo.type = #{type}
+			</if>
+		</where>
+		<if test="pageNo != null and pageSize != null">
+			limit #{pageNo},#{pageSize}
+		</if>
+	</select>
+
+	<select id="countProduct" resultType="int" parameterType="map">
+		select count(1) from (
+		select mo.business_type  as businessType,mo.business_id as businessId,mo.user_id as userId,mp.`type`,mp.name,mp.brief,mp.cover_path as coverPath from marry_operation mo,marry_product mp
+		where mo.business_id = mp.id
+		order by mo.create_time desc
+		) productInfo
+		<where>
+			<if test="businessType != null">
+				productInfo.businessType = #{businessType}
+			</if>
+			<if test="userId != null and userId != ''">
+				AND productInfo.userId = #{userId}
+			</if>
+			<if test="type != null">
+				AND productInfo.type = #{type}
+			</if>
+		</where>
+	</select>
+
+	<select id="isFollow" resultType="int">
+		select count(1) as isFollow from marry_operation where business_type = #{businessType} and business_id = #{businessId} and user_id = #{userId}
+	</select>
+
+	<select id="findAllList" resultType="MarryOperation">
+		SELECT
+		<include refid="marryOperationColumns"/>
+		FROM marry_operation a
+		<include refid="marryOperationJoins"/>
+		<where>
+
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+
+	<insert id="insert">
+		INSERT INTO marry_operation(
+			business_type,
+			business_id,
+			user_id,
+			create_time
+		) VALUES (
+			#{businessType},
+			#{businessId},
+			#{userId},
+			#{createTime}
+		)
+	</insert>
+
+	<update id="update">
+		UPDATE marry_operation SET
+			business_type = #{businessType},
+			business_id = #{businessId},
+			user_id = #{userId},
+			create_time = #{createTime}
+		WHERE id = #{id}
+	</update>
+
+	<update id="delete">
+		DELETE FROM marry_operation
+		WHERE id = #{id}
+	</update>
+
+</mapper>

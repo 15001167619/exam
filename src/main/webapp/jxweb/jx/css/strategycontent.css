@@ -1,0 +1,84 @@
+@import './header.css';
+@import './navigation.css';
+@import './commonraiders.css';
+@import './commonpageturning.css';
+@import './commoncontent.css';
+@import './footer.css';
+
+
+.article-wrapper {
+	width: 1200px;
+	margin: 30px auto 50px;
+	display: flex;
+}
+.article {
+	flex: 1;
+	margin: 0 30px 0 0;
+}
+.aside {
+	width: 290px;
+	box-sizing: border-box;
+	position: relative;
+}
+.aside-box {
+	border: 1px solid #dfdfdf;
+	padding: 20px;
+}
+
+.title-wrapper {
+	border: 1px solid #dfdfdf;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+	height: 60px;
+	width: 290px;
+	top: 0;
+	left: 0;
+	box-sizing: border-box;
+	background: url(../img/201901121445.png) no-repeat 20px 24px #f2f2f5;
+	padding: 0 20px 10px 60px;
+	position: absolute;
+}
+.unified-ul {
+	margin: 60px 0 0 0;
+}
+.title-wrapper .h3-label-2 {
+	font-size: 28px;
+	line-height: 28px;
+}
+.title-wrapper .more {
+	font-size: 14px;
+	line-height: 14px;
+	color: #b12f2a;
+	font-family: 'arial';
+}
+
+.unified-li .a-1 {
+	position: relative;
+}
+.unified-li .a-1 .iconfont {
+	width: 54px;
+	height: 54px;
+	background: rgba(0,0,0,0.5);
+	border-radius: 50%;
+	color: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 100px;
+	left: 105px;
+	font-size: 22px;
+}
+
+
+
+
+
+.page-turning {
+	padding: 22px 0 22px 0;
+	border-top: 1px dashed #dfdfdf;
+}
+.page-turning dl{
+	display: flex;
+}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etycx.marry.modules.expect.dao.ExpectDao">
+
+	<insert id="insert">
+		insert into marry_expect(user_id,hobby,age,price_scope,status,create_time,wedding_time) value (#{userId},#{hobby},#{age},#{priceScope},1,now(),#{WeddingTime})
+	</insert>
+
+</mapper>

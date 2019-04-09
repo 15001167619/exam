@@ -1,0 +1,114 @@
+@import './header.css';
+@import './commona.css';
+@import './navigation.css';
+@import './commonlist.css';
+@import './commontitle.css';
+@import './menubar.css';
+@import './pagelist.css';
+@import './footer.css';
+
+.content {
+	width: 1200px;
+	margin: 0 auto;
+	box-sizing: border-box;
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	/*border: 1px solid red;*/
+}
+
+
+.content_right_list{
+    width: 960px;
+    padding: 30px 20px 0;
+    box-sizing: border-box;
+    border: 1px solid #dfdfdf;
+    border-radius: 8px;
+    margin: 0 0 50px;
+}
+
+
+.content_right_list_con{
+    margin: 0 0 20px 0;
+}
+.content_right_list_con h4 {
+    border-bottom: 1px dashed #e3e3e3;
+    color: #333333;
+    display: flex;
+    align-items: center;
+    padding: 0 0 20px;
+}
+.content_right_list_con h4 .iconfont {
+    font-size: 24px;
+    color: #b12f2a;
+}
+.content_right_list_con h4 span {
+    font-size: 24px;
+    line-height: 24px;
+    margin: 0 0 0 10px;
+}
+
+
+
+.common-theme-2-3 {
+    width: calc(100% + 20px);
+    margin: 10px 0px 0px 0px;
+    display: flex;
+    flex-wrap: wrap;
+    left: -20px;
+    top: 0;
+}
+.common-theme-2-3 .common-theme-2-3-item {
+    width: 215px;
+    height: 410px;
+    margin: 19px 0 0 19px;
+    /*border: 1px solid red;*/
+}
+.common-theme-2-3-item .xq {
+    width: 202px;
+    left: 6px;
+}
+.common-theme-2-3-item .icon-shipinbofang {
+    left: 93px;
+    top: 107px;
+}
+
+.common-theme-2-3-item .c-1 .c-1-1 {
+    padding: 13px 0;
+}
+.common-theme-2-3-item .c-1 .c-1-1 .t {
+    font-size: 17px;
+}
+
+.common-theme-2-3-item .c-1 .c-1-1 .focus {
+    display: flex;
+    justify-content: center;
+}
+.common-theme-2-3-item .c-1 .c-1-1 .focus a {
+    margin: 0 14px 0 0;
+}
+.common-theme-2-3-item .c-1 .c-1-1 .focus a span {
+    font-size: 14px;
+    margin: 0 0 0 5px;
+}
+.common-theme-2-3-item .c-1 .c-1-1 .focus .already {
+    color: #b12f2a;
+}
+
+
+.list-wrapper {
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.list-wrapper .ul-1 .li .iconfont {
+	margin: 0 9px 0 0;
+}
+
+.page-wrapper {
+    margin: 30px auto 40px;
+}
+
+.list-wrapper .ul-1 .li .text {
+    width: auto;
+}

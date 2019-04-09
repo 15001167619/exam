@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etycx.marry.modules.strategy.dao.MarryStrategyDao">
+
+	<sql id="marryStrategyColumns">
+		a.id AS "id",
+		a.name AS "name",
+		a.create_name AS "createName",
+		a.content AS "content",
+		a.cover_path AS "coverPath",
+		a.type AS "type",
+		a.sort AS "sort",
+		a.create_time AS "createTime",
+		a.update_time AS "updateTime"
+	</sql>
+
+	<sql id="marryStrategyJoins">
+	</sql>
+
+	<select id="get" resultType="MarryStrategy">
+		SELECT
+		<include refid="marryStrategyColumns"/>
+		FROM marry_strategy a
+		<include refid="marryStrategyJoins"/>
+		WHERE a.id = #{id}
+	</select>
+
+	<select id="findList" resultType="MarryStrategy">
+		SELECT
+		<include refid="marryStrategyColumns"/>
+		FROM marry_strategy a
+		<include refid="marryStrategyJoins"/>
+		<where>
+
+			<if test="name != null and name != ''">
+				AND a.name LIKE
+				<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
+				<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
+				<if test="dbName == 'mysql'">concat('%',#{name},'%')</if>
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+
+	<select id="findAllList" resultType="MarryStrategy">
+		SELECT
+		<include refid="marryStrategyColumns"/>
+		FROM marry_strategy a
+		<include refid="marryStrategyJoins"/>
+		<where>
+
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+
+	<insert id="insert">
+		INSERT INTO marry_strategy(
+			name,
+			create_name,
+			content,
+			cover_path,
+			type,
+			sort,
+			create_time,
+			update_time
+		) VALUES (
+			#{name},
+			#{createName},
+			#{content},
+			#{coverPath},
+			#{type},
+			#{sort},
+			#{createTime},
+			#{updateTime}
+		)
+	</insert>
+
+	<update id="update">
+		UPDATE marry_strategy SET
+			name = #{name},
+			create_name = #{createName},
+			content = #{content},
+			cover_path = #{coverPath},
+			type = #{type},
+			sort = #{sort},
+			create_time = #{createTime},
+			update_time = #{updateTime}
+		WHERE id = #{id}
+	</update>
+
+	<update id="delete">
+		DELETE FROM marry_strategy
+		WHERE id = #{id}
+	</update>
+
+
+	<select id="countStrategy" resultType="int" parameterType="map">
+		select count(1) from marry_strategy where `type` = #{type}
+	</select>
+
+	<select id="selectStrategyList" resultType="MarryStrategy" parameterType="map">
+		select * from marry_strategy where `type` = #{type} order by sort desc
+		<if test="pageNo != null and pageSize != null">
+			limit #{pageNo},#{pageSize}
+		</if>
+	</select>
+
+	<select id="getTopStrategyList" resultType="MarryStrategy" parameterType="map">
+		select * from (
+			select id,name,sort,create_time from marry_strategy a where a.type = #{type} ORDER BY a.sort DESC,create_time DESC ) a
+		where sort &gt;=#{sort}
+		ORDER BY a.sort,create_time
+	</select>
+
+	<select id="getNextStrategyList" resultType="MarryStrategy" parameterType="map">
+		select * from (
+		select id,name,sort,create_time from marry_strategy a where a.type = #{type} ORDER BY a.sort DESC,create_time DESC
+		) a
+		where sort &lt;=#{sort}
+	</select>
+
+	<select id="getOtherStrategyList" resultType="MarryStrategy" parameterType="map">
+		select * from marry_strategy a
+		where 1=1
+		<if test="id != null and type != null">
+			and  a.type = #{type} and id not in (#{id})
+		</if>
+		ORDER BY a.sort desc,create_time desc limit #{pageSize}
+	</select>
+
+	<select id="getIndexList" resultType="MarryStrategy">
+		select * from marry_strategy a ORDER BY a.sort desc,create_time desc limit 5
+	</select>
+</mapper>

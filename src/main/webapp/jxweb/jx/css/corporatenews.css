@@ -1,0 +1,18 @@
+@import './header.css';
+@import './banner.css';
+@import './navigation.css';
+@import './commonlist.css';
+@import './commontitle.css';
+@import './commonjournalisml.css';
+@import './pagelist.css';
+@import './footer.css';
+
+.content {
+	width: 1200px;
+	padding: 50px 0;
+	margin: 0 auto;
+	box-sizing: border-box;
+}
+.page-wrapper {
+	margin: 50px auto 0;
+}

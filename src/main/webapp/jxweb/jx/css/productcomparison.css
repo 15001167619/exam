@@ -1,0 +1,110 @@
+@import './header.css';
+@import './navigation.css';
+@import './footer.css';
+
+
+.content-wrapper {
+	width: 1200px;
+	margin: 0 auto 50px;
+}
+.ul-wrapper {
+	border: 1px solid #dfdfdf;
+}
+
+.ul-wrapper li {
+	display: flex;
+	border-bottom: 1px solid #dfdfdf;
+}
+.ul-wrapper li .li-item {
+	width: calc(100% / 5);
+	height: 270px;
+	box-sizing: border-box;
+	padding: 10px;
+	border-right: 1px solid #dfdfdf;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.ul-wrapper li .li-item:last-child {
+	border: none;
+}
+.ul-wrapper .start-li {
+	background: #f2f2f5;
+}
+.ul-wrapper li .start-li-item {
+	flex-direction: column;
+}
+.ul-wrapper li .start-li-item .l-2 {
+	font-size: 14px;
+	line-height: 14px;
+	margin: 5px auto 14px;
+}
+.ul-wrapper li .start-li-item .l-3 {
+	font-size: 14px;
+	line-height: 14px;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 188px;
+	background: #b8b8b8;
+	border-radius: 5px;
+	color: #fff;
+	transition: all 0.3s linear;
+}
+.ul-wrapper li .start-li-item .l-3:hover {
+	background: #b12f2a;
+	transition: all 0.3s linear;
+}
+
+.ul-wrapper li .process-li-item {
+	flex-direction: column;
+	position: relative;
+}
+.ul-wrapper li .process-li-item .l-2 {
+	font-size: 14px;
+	line-height: 14px;
+	margin: 5px auto 14px;
+}
+.ul-wrapper li .process-li-item .l-3 {
+	font-size: 14px;
+	line-height: 14px;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 188px;
+	background: #b8b8b8;
+	border-radius: 5px;
+	color: #fff;
+	transition: all 0.3s linear;
+}
+.ul-wrapper li .process-li-item .iconfont {
+	width: 25px;
+	height: 25px;
+	border:	1px solid #b8b8b8;
+	color: #b8b8b8;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	cursor: pointer;
+	font-size: 12px;
+}
+.ul-wrapper li .process-li-item .l-3:hover {
+	background: #b12f2a;
+	transition: all 0.3s linear;
+}
+
+.ul-wrapper li:last-child {
+	border: none;
+}
+
+
+.ul-wrapper .end-li .end-li-item {
+	background: #f2f2f5;
+	cursor: pointer;
+}

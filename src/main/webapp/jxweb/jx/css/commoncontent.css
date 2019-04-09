@@ -1,0 +1,61 @@
+.article .title {
+	font-size: 22px;
+	line-height: 22px;
+	color: #333;
+	text-align: center;
+}
+.article .brief-introduction {
+	display: flex;
+	justify-content: center;
+	margin: 20px 0;
+}
+.article .brief-introduction dl dt {
+	font-size: 14px;
+	line-height: 14px;
+	color: #999;
+}
+.article .brief-introduction dl dd {
+	font-size: 14px;
+	line-height: 14px;
+	color: #999;
+}
+.article .brief-introduction .source {
+	display: flex;
+}
+.article .brief-introduction .date {
+	display: flex;
+	margin: 0 0 0 28px;
+}
+.article .brief-introduction .share {
+	display: flex;
+	margin: 0 0 0 28px;
+}
+.article .brief-introduction .share .iconfont {
+	font-size: 14px;
+	line-height: 14px;
+	color: #999;
+	margin: 0 5px 0 0;
+}
+.article .brief-introduction .share span {
+	font-size: 14px;
+	line-height: 14px;
+	color: #999;
+
+}
+
+
+.article .content {
+	overflow: hidden;
+	padding: 20px 0 0 0;
+}
+.article .content p {
+	font-size: 14px;
+	line-height: 26px;
+	color: #666;
+	margin: 0 0 30px 0;
+}
+.article .content img {
+	max-width: 100%;
+	display: block;
+	margin: 0 auto 30px;
+}

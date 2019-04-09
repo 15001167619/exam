@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etycx.marry.modules.diary.dao.MarryDiaryDao">
+    
+	<sql id="marryDiaryColumns">
+		a.id AS "id",
+		a.type AS "type",
+		a.name AS "name",
+		a.brief AS "brief",
+		a.cover_path AS "coverPath",
+		a.content AS "content",
+		a.sort AS "sort",
+		a.create_time AS "createTime",
+		a.update_time AS "updateTime",
+		a.create_user_id AS "createUserId",
+		a.update_user_id AS "updateUserId"
+	</sql>
+	
+	<sql id="marryDiaryJoins">
+	</sql>
+    
+	<select id="get" resultType="MarryDiary">
+		SELECT 
+			<include refid="marryDiaryColumns"/>
+		FROM marry_diary a
+		<include refid="marryDiaryJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="MarryDiary">
+		SELECT 
+			<include refid="marryDiaryColumns"/>
+		FROM marry_diary a
+		<include refid="marryDiaryJoins"/>
+		<where>
+			<if test="type != null">
+				AND a.type = #{type}
+			</if>
+			<if test="name != null and name != ''">
+				AND a.name LIKE 
+					<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{name},'%')</if>
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.sort DESC,create_time DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="MarryDiary">
+		SELECT 
+			<include refid="marryDiaryColumns"/>
+		FROM marry_diary a
+		<include refid="marryDiaryJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO marry_diary(
+			type,
+			name,
+			brief,
+			cover_path,
+			content,
+			sort,
+			create_time,
+			update_time,
+			create_user_id,
+			update_user_id
+		) VALUES (
+			#{type},
+			#{name},
+			#{brief},
+			#{coverPath},
+			#{content},
+			#{sort},
+			#{createTime},
+			#{updateTime},
+			#{createUserId},
+			#{updateUserId}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE marry_diary SET 	
+			type = #{type},
+			name = #{name},
+			brief = #{brief},
+			cover_path = #{coverPath},
+			content = #{content},
+			sort = #{sort},
+			create_time = #{createTime},
+			update_time = #{updateTime},
+			create_user_id = #{createUserId},
+			update_user_id = #{updateUserId}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM marry_diary
+		WHERE id = #{id}
+	</update>
+
+	<select id="countDiary" resultType="int" parameterType="map">
+		SELECT
+		count(1)
+		FROM
+		marry_diary a
+		<where>
+			<if test="type != null">
+				 a.type = #{type}
+			</if>
+		</where>
+	</select>
+
+	<select id="selectDiaryList" resultType="MarryDiary" parameterType="map">
+		SELECT
+		<include refid="marryDiaryColumns"/>
+		FROM
+		marry_diary a
+		<where>
+			<if test="type != null">
+				a.type = #{type}
+			</if>
+		</where>
+		ORDER BY a.sort DESC,create_time DESC
+		<if test="pageNo != null and pageSize != null">
+			limit #{pageNo},#{pageSize}
+		</if>
+	</select>
+
+	<select id="getTopDiaryList" resultType="MarryDiary" parameterType="map">
+		select * from (
+			select id,name,sort,create_time from marry_diary a where a.type = #{type} ORDER BY a.sort DESC,create_time DESC ) a
+		where sort &gt;=#{sort}
+		ORDER BY a.sort,create_time
+	</select>
+
+	<select id="getNextDiaryList" resultType="MarryDiary" parameterType="map">
+		select * from (
+		select id,name,sort,create_time from marry_diary a where a.type = #{type} ORDER BY a.sort DESC,create_time DESC
+		) a
+		where sort &lt;=#{sort}
+	</select>
+
+</mapper>

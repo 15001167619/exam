@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etycx.marry.modules.SuccessCase.dao.SuccessCaseDao">
+
+
+
+	<select id="selectSuccess" resultType="SuccessCase">
+		select id,product_id productId,title,content,pic1,pic2,pic3, pic4,create_time  from marry_case order by create_time DESC
+	</select>
+
+</mapper>

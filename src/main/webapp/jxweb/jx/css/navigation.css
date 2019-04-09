@@ -1,0 +1,17 @@
+/*导航位置*/
+.Navigation {
+	width: 1200px;
+	margin: 22px auto;
+	display: flex;
+	font-size: 14px;
+	line-height: 14px;
+	color: #999999;
+}
+.Navigation a{
+	color: #999999;
+}
+.Navigation span{
+    color: #999999;
+    font-size: 14px;
+    font-family: '微软雅黑';
+}

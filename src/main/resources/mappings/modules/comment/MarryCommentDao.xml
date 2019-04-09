@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etycx.marry.modules.comment.dao.MarryCommentDao">
+
+	<sql id="marryCommentColumns">
+		a.id AS "id",
+		a.p_id AS "pId",
+		a.business_type AS "businessType",
+		a.business_id AS "businessId",
+		a.content AS "content",
+		a.visible AS "visible",
+		a.user_id AS "userId",
+		a.has_picture AS "hasPicture",
+		a.pic_urls AS "picUrls",
+		a.create_time AS "createTime",
+		a.deleted AS "deleted"
+	</sql>
+
+	<sql id="marryCommentJoins">
+		LEFT JOIN sys_user u7 ON u7.id = a.user_id
+	</sql>
+
+	<select id="get" resultType="MarryComment">
+		SELECT
+		<include refid="marryCommentColumns"/>
+		FROM marry_comment a
+		<include refid="marryCommentJoins"/>
+		WHERE a.id = #{id}
+	</select>
+
+	<select id="findList" resultType="MarryComment">
+		SELECT
+		<include refid="marryCommentColumns"/>
+		FROM marry_comment a
+		<include refid="marryCommentJoins"/>
+		<where>
+
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+
+	<select id="findAllList" resultType="MarryComment">
+		SELECT
+		<include refid="marryCommentColumns"/>
+		FROM marry_comment a
+		<include refid="marryCommentJoins"/>
+		<where>
+
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+
+	<insert id="insert">
+		INSERT INTO marry_comment(
+			p_id,
+			business_type,
+			business_id,
+			content,
+			visible,
+			user_id,
+			has_picture,
+			pic_urls,
+			create_time,
+			deleted
+		) VALUES (
+			#{pId},
+			#{businessType},
+			#{businessId},
+			#{content},
+			#{visible},
+			#{userId},
+			#{hasPicture},
+			#{picUrls},
+			#{createTime},
+			#{deleted}
+		)
+	</insert>
+
+	<insert id="addComment">
+		INSERT INTO marry_comment(
+			p_id,
+			business_id,
+			content,
+			user_id,
+			has_picture
+			<if test="picUrls != null and picUrls != ''">
+				,pic_urls
+			</if>
+		) VALUES (
+			#{pId},
+			#{businessId},
+			#{content},
+			#{userId},
+			#{hasPicture}
+			<if test="picUrls != null and picUrls != ''">
+				,#{picUrls}
+			</if>
+		)
+	</insert>
+
+	<update id="update">
+		UPDATE marry_comment SET
+			p_id = #{pId},
+			business_type = #{businessType},
+			business_id = #{businessId},
+			content = #{content},
+			visible = #{visible},
+			user_id = #{userId},
+			has_picture = #{hasPicture},
+			pic_urls = #{picUrls},
+			create_time = #{createTime},
+			deleted = #{deleted}
+		WHERE id = #{id}
+	</update>
+
+	<update id="delete">
+		DELETE FROM marry_comment
+		WHERE id = #{id}
+	</update>
+
+	<select id="countEvaluation" resultType="int" parameterType="map">
+		select count(1) from (
+		select
+		mp.name as productName,
+		mp.cover_path as coverPath,
+		mu.id as userId,
+		mu.name as userName,
+		mu.head_url as headUrl,
+		mc.content,
+		mc.business_id as businessId,
+		mc.create_time as createTime
+		from marry_comment mc,marry_product mp,marry_user mu where mc.business_id = mp.id and mc.user_id = mu.id
+		group by mc.business_id,mu.id
+		order by mc.create_time desc ) a
+		<where>
+			<if test="userId != null and userId != ''">
+				a.userId = #{userId}
+			</if>
+		</where>
+	</select>
+
+	<select id="countComment" resultType="int" parameterType="map">
+		select count(1) from (
+		select
+		mc.id,
+		mc.p_id as pid,
+		mc.business_id as businessId,
+		mp.name as productName,
+		mp.cover_path as coverPath,
+		mu.id as userId,
+		mu.name as userName,
+		mu.head_url as headUrl,
+		mc.content,
+		mc.create_time as createTime
+		from marry_comment mc,marry_product mp,marry_user mu where mc.business_id = mp.id and mc.user_id = mu.id
+		order by mc.create_time desc) a
+		<where>
+			a.pid = 0
+			<if test="businessId != null and businessId != ''">
+				and	a.businessId = #{businessId}
+			</if>
+		</where>
+	</select>
+
+	<select id="countAllComments" resultType="int" parameterType="string">
+		select count(1) from marry_comment where business_id = #{businessId}
+	</select>
+
+	<select id="findEvaluationList" resultType="MarryComment" parameterType="map">
+		select * from (
+		select
+		mp.name as productName,
+		mp.cover_path as coverPath,
+		mu.id as userId,
+		mu.name as userName,
+		mu.head_url as headUrl,
+		mc.content,
+		mc.business_id as businessId,
+		mc.create_time as createTime
+		from marry_comment mc,marry_product mp,marry_user mu where mc.business_id = mp.id and mc.user_id = mu.id
+		order by mc.create_time desc ) a
+		<where>
+			<if test="userId != null and userId != ''">
+				a.userId = #{userId}
+			</if>
+			<if test="businessId != null and businessId != ''">
+				and a.businessId = #{businessId}
+			</if>
+		</where>
+	</select>
+
+	<select id="findGroupEvaluationList" resultType="MarryComment" parameterType="map">
+		select *  from (
+		select
+		mp.name as productName,
+		mp.cover_path as coverPath,
+		mu.id as userId,
+		mu.name as userName,
+		mu.head_url as headUrl,
+		mc.content,
+		mc.business_id as businessId,
+		mc.create_time as createTime
+		from marry_comment mc,marry_product mp,marry_user mu where mc.business_id = mp.id and mc.user_id = mu.id
+		group by mc.business_id,mu.id
+		order by mc.create_time desc ) a
+		<where>
+			<if test="userId != null and userId != ''">
+				a.userId = #{userId}
+			</if>
+		</where>
+		<if test="pageNo != null and pageSize != null">
+			limit #{pageNo},#{pageSize}
+		</if>
+	</select>
+
+
+	<select id="selectCommentList" resultType="MarryComment" parameterType="map">
+		select * from (
+		select
+		mc.id,
+		mc.p_id as pid,
+		mc.business_id as businessId,
+		mp.name as productName,
+		mp.cover_path as coverPath,
+		mu.id as userId,
+		mu.name as userName,
+		mu.head_url as headUrl,
+		mc.content,
+		mc.has_picture as hasPicture,
+		mc.pic_urls as picUrls,
+		mc.create_time as createTime
+		from marry_comment mc,marry_product mp,marry_user mu where mc.business_id = mp.id and mc.user_id = mu.id
+		order by mc.create_time desc) a
+		<where>
+			a.pid = 0
+			<if test="businessId != null and businessId != ''">
+				and	a.businessId = #{businessId}
+			</if>
+		</where>
+		<if test="pageNo != null and pageSize != null">
+			limit #{pageNo},#{pageSize}
+		</if>
+	</select>
+
+	<select id="selectChildCommentList" resultType="MarryComment" parameterType="map">
+		select * from (
+		select
+		mc.id,
+		mc.p_id as pid,
+		mc.business_id as businessId,
+		mp.name as productName,
+		mp.cover_path as coverPath,
+		mu.id as userId,
+		mu.name as userName,
+		mu.head_url as headUrl,
+		mc.content,
+		mc.has_picture as hasPicture,
+		mc.pic_urls as picUrls,
+		mc.create_time as createTime
+		from marry_comment mc,marry_product mp,marry_user mu where mc.business_id = mp.id and mc.user_id = mu.id
+		order by mc.create_time desc) a
+		<where>
+			<if test="businessId != null and businessId != ''">
+				a.businessId = #{businessId}
+			</if>
+			<if test="pId != null and pId != ''">
+				and a.id in (
+				select id from marry_comment where p_id = #{pId}
+				)
+			</if>
+		</where>
+		<if test="pageChildNo != null and pageSize != null">
+			limit #{pageChildNo},#{pageSize}
+		</if>
+	</select>
+
+	<select id="selectChildCommentCount" resultType="int" parameterType="map">
+		select count(1) from (
+		select
+		mc.id,
+		mc.p_id as pid,
+		mc.business_id as businessId,
+		mp.name as productName,
+		mp.cover_path as coverPath,
+		mu.id as userId,
+		mu.name as userName,
+		mu.head_url as headUrl,
+		mc.content,
+		mc.has_picture as hasPicture,
+		mc.pic_urls as picUrls,
+		mc.create_time as createTime
+		from marry_comment mc,marry_product mp,marry_user mu where mc.business_id = mp.id and mc.user_id = mu.id
+		order by mc.create_time desc) a
+		<where>
+			<if test="businessId != null and businessId != ''">
+				a.businessId = #{businessId}
+			</if>
+			<if test="pId != null and pId != ''">
+				and a.id in (
+				select id from marry_comment where p_id = #{pId}
+				)
+			</if>
+		</where>
+	</select>
+
+
+
+
+</mapper>

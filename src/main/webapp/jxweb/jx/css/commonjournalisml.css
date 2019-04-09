@@ -1,0 +1,67 @@
+.content .ul {
+	width: 1220px;
+	display: flex;
+	flex-wrap: wrap;
+	position: relative;
+	left: -20px;
+	top: 20px;
+}
+.content .ul .li {
+	width: 285px;
+	height: 297px;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	top: 0;
+	left: 0;
+	margin: 20px 0 0 20px;
+	transition: all 0.3s linear;
+}
+.content .ul .li:hover {
+	box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+	top: -5px;
+	transition: all 0.3s linear;
+}
+.content .ul .li:hover .li-2 .a-1 {
+	color: #b12f2a;
+	transition: all 0.3s linear;
+}
+.content .ul .li .li-1 {
+	width: 100%;
+	height: 173px;
+	position: relative;
+}
+.content .ul .li .li-1 .iconfont {
+    font-size: 20px;
+    color: #fff;
+    background: rgba(0,0,0,0.5);
+    position: absolute;
+    top: 70px;
+    left: 120px;
+    width: 40px;
+    height: 40px;
+    border-radius: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.content .ul .li .li-2 {
+	flex: 1;
+	box-sizing: border-box;
+	padding: 0 15px;
+	border: 1px solid #dfdfdf;
+}
+.content .ul .li .li-2 .a-1 {
+	font-size: 22px;
+	line-height: 22px;
+	color: #333;
+	padding: 15px 0 10px 0;
+	border-bottom: 1px solid #d1d1d1;
+	transition: all 0.3s linear;
+}
+.content .ul .li .li-2 .a-2 {
+	font-size: 14px;
+	color: #999;
+	padding: 10px 0 0 0;
+	line-height: 26px;
+}

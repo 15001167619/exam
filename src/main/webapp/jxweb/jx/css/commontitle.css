@@ -1,0 +1,21 @@
+.common-title-wrapper{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.common-title-wrapper .t-1{
+	font-size: 30px;
+	line-height: 30px;
+	color: #333;
+}
+.common-title-wrapper .t-2{
+	font-size: 18px;
+	line-height: 18px;
+	color: #999;
+	margin: 8px 0;
+}
+.common-title-wrapper .t-3{
+	width: 40px;
+	height: 2px;
+	background: #b12f2a;
+}

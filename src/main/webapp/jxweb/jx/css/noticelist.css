@@ -1,0 +1,44 @@
+@import './header.css';
+@import './navigation.css';
+@import './pagelist.css';
+@import './footer.css';
+
+.list-wrapper {
+	width: 1200px;
+	/*border: 1px solid red;*/
+	margin: 0 auto 50px;
+}
+.list-wrapper .ul {
+
+}
+.list-wrapper .ul .li-item {
+	margin: 0 0 15px 0;
+}
+.list-wrapper .ul .li-item:last-child {
+	margin: 0;
+}
+.list-wrapper .ul .li-item .up {
+	display: flex;
+	height: 50px;
+	padding: 0 30px;
+	align-items: center;
+	border: 1px solid #dfdfdf;
+	font-size: 16px;
+	border-radius: 7px;
+	color: #b12f2a;
+	transition: all 0.3s linear;
+}
+.list-wrapper .ul .li-item .up:hover {
+	background: #b12f2a;
+	color: #fff;
+	transition: all 0.3s linear;
+}
+.list-wrapper .ul .li-item .up .span-1 {
+	margin: 0 10px;
+	flex: 1;
+}
+.list-wrapper .ul .li-item .down {
+	font-size: 14px;
+	line-height: 25px;
+	padding: 20px 30px;
+}

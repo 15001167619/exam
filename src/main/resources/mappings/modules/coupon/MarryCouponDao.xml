@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etycx.marry.modules.coupon.dao.MarryCouponDao">
+    
+	<sql id="marryCouponColumns">
+		a.id AS "id",
+		a.cover_path AS "coverPath"
+	</sql>
+	
+	<sql id="marryCouponJoins">
+	</sql>
+    
+	<select id="get" resultType="MarryCoupon">
+		SELECT 
+			<include refid="marryCouponColumns"/>
+		FROM marry_coupon a
+		<include refid="marryCouponJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="MarryCoupon">
+		SELECT 
+			<include refid="marryCouponColumns"/>
+		FROM marry_coupon a
+		<include refid="marryCouponJoins"/>
+		<where>
+			
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="MarryCoupon">
+		SELECT 
+			<include refid="marryCouponColumns"/>
+		FROM marry_coupon a
+		<include refid="marryCouponJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO marry_coupon(
+			cover_path
+		) VALUES (
+			#{coverPath}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE marry_coupon SET 	
+			cover_path = #{coverPath}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM marry_coupon
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

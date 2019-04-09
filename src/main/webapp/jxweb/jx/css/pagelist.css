@@ -1,0 +1,83 @@
+.page-wrapper {
+    margin: 25px auto 0;
+}
+.page-wrapper ul {
+    display: flex;
+    justify-content: center;
+}
+.page-wrapper ul li {
+
+}
+.page-wrapper ul li a {
+    font-size: 14px;
+    color: #999;
+    line-height: 14px;
+    display: flex;
+    padding: 5px 8px;
+    margin: 0 0 0 20px;
+    border: 1px solid #666;
+    border-radius: 2px;
+    transition: all 0.3s linear;
+}
+.page-wrapper ul li .up {
+    border: none;
+}
+.page-wrapper ul li .next {
+    border: none;
+}
+.page-wrapper ul li .s {
+    border: none;
+}
+.page-wrapper ul li .x {
+    border: none;
+}
+.page-wrapper ul li a:hover {
+    background: #b12f2a;
+    border: 1px solid #b12f2a;
+    color: #fff;
+    transition: all 0.3s linear;
+}
+.page-wrapper ul li .up:hover {
+    background: none;
+    border: none;
+    color: #b12f2a;
+}
+.page-wrapper ul li .next:hover {
+    background: none;
+    border: none;
+    color: #b12f2a;
+}
+.page-wrapper ul li .s:hover {
+    background: none;
+    border: none;
+    color: #b12f2a;
+}
+.page-wrapper ul li .x:hover {
+    background: none;
+    border: none;
+    color: #b12f2a;
+}
+.page-wrapper ul li:first-child a {
+    margin: 0;
+}
+.page-wrapper ul .active {
+    font-size: 14px;
+    color: #999;
+    line-height: 14px;
+    display: flex;
+    padding: 5px 8px;
+    background: #b12f2a;
+    border: 1px solid #b12f2a;
+    color: #fff;
+    border-radius: 2px;
+    margin: 0 0 0 20px;
+}
+.page-wrapper ul .ellipsis {
+    font-size: 14px;
+    color: #999;
+    line-height: 14px;
+    display: flex;
+    padding: 5px 0px;
+    border-radius: 2px;
+    margin: 0 0 0 20px;
+}

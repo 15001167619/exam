@@ -1,0 +1,30 @@
+@import './header.css';
+@import './navigation.css';
+@import './commonlist.css';
+@import './footer.css';
+
+.banner-wrapper {
+	width: 100%;
+	height: 500px;
+	overflow: hidden;
+}
+.banner-son {
+	width: 1200px;
+	height: 100%;
+	margin: 0 auto;
+	position: relative;
+}
+.banner-son img {
+	position: absolute;
+	top: 0;
+	left: -360px;
+}
+.content {
+	width: 1200px;
+	margin: 30px auto;
+}
+.content p {
+	font-size: 16px;
+	color: #333;
+	line-height: 26px;
+}

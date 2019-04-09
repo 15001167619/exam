@@ -1,0 +1,295 @@
+.product-switching-effect {
+	width: 100%;
+	height: 783px;
+	/*border: 1px solid blue;*/
+	margin: 32px 0 0 0;
+	position: relative;
+}
+.product-switching-effect .tab-item {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	/*border: 1px solid green;*/
+}
+.product-switching-effect .tab-item li {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	/*border: 1px solid pink;*/
+	display: none;
+}
+.product-switching-effect .tab-item li:nth-child(1) {
+	display: block;
+}
+.product-switching-effect .tab-item li .v-1 {
+	width: 301px;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+.product-switching-effect .tab-item li .v-1 .v-1-1 {
+	width: 301px;
+	height: 362px;
+	position: relative;
+	background: #ccc;
+}
+.product-switching-effect .tab-item li .v-1 .v-1-1:hover .v-1-1-2 {
+	display: block;
+}
+.product-switching-effect .tab-item li .v-1 .v-1-1 .v-1-1-1,.v-1-1-2 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.product-switching-effect .tab-item li .v-1 .v-1-1 .v-1-1-2 {
+	background: rgba(0,0,0,0.5);
+	color: white;
+	display: none;
+}
+.product-switching-effect .tab-item li .v-1 .v-1-1 .v-1-1-2 a {
+	display:block;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}
+.product-switching-effect .tab-item li .v-1 .v-1-1 .v-1-1-2 a img{
+	margin-top: 100px;
+}
+.product-switching-effect .tab-item li .v-1 .v-1-1 .v-1-1-2 a p{
+	font-size: 22px;
+	color: white;
+	font-family: '微软雅黑';
+	margin-top: 32px;
+}
+.product-switching-effect .tab-item li .v-1 .v-1-1 .v-1-1-2 a p span{
+	font-size: 14px;
+	color: #dfdfdf;
+	font-family: '微软雅黑';
+	margin-top: 8px;
+	display: block;
+}
+.product-switching-effect .tab-item li .v-2 {
+	width: 621px;
+	height: 752px;
+	/* border: 1px solid blue; */
+	position: absolute;
+	z-index: 1;
+	left: 332px;
+	top: 14px;
+}
+
+.product-switching-effect .tab-item li .v-2:hover .v-2-2 {
+	display: block;
+	
+}
+.product-switching-effect .tab-item li .v-2 .v-2-1,.v-2-2 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.product-switching-effect .tab-item li .v-2 .v-2-2 a{
+	display:block;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}
+.product-switching-effect .tab-item li .v-2 .v-2-2 a img{
+	margin-top: 310px;
+}
+.product-switching-effect .tab-item li .v-2 .v-2-2 a p{
+	font-size: 22px;
+	color: white;
+	font-family: '微软雅黑';
+	margin-top: 32px;
+}
+.product-switching-effect .tab-item li .v-2 .v-2-2 a p span{
+	font-size: 14px;
+	color: #dfdfdf;
+	font-family: '微软雅黑';
+	margin-top: 8px;
+	display: block;
+}
+.product-switching-effect .tab-item li .v-2 .v-2-2 {
+	background: rgba(0,0,0,0.5);
+	display: none;
+	color: white;
+}
+.product-switching-effect .tab-item li .v-3 {
+	position: absolute;
+	width: 315px;
+	height: 379px;
+	right: 0;
+	top: 76px;
+	z-index: 2;
+	/*border: 1px solid red;*/
+}
+.product-switching-effect .tab-item li .v-3 .v-3-1,.v-3-2 {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.product-switching-effect .tab-item li .v-3 .v-3-2 {
+	background: rgba(0,0,0,0.5);
+	color: #fff;
+	display: none;
+}
+.product-switching-effect .tab-item li .v-3 .v-3-2 a{
+	display:block;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}
+.product-switching-effect .tab-item li .v-3 .v-3-2 a img{
+	margin-top: 125px;
+}
+.product-switching-effect .tab-item li .v-3 .v-3-2 a p{
+	font-size: 22px;
+	color: white;
+	font-family: '微软雅黑';
+	margin-top: 32px;
+}
+.product-switching-effect .tab-item li .v-3 .v-3-2 a p span{
+	font-size: 14px;
+	color: #dfdfdf;
+	font-family: '微软雅黑';
+	margin-top: 8px;
+	display: block;
+}
+
+.product-switching-effect .tab-item li .v-3:hover .v-3-2 {
+	display: block;
+}
+.product-switching-effect .tab-item li .v-4 {
+	width: 488px;
+	height: 781px;
+	border: 1px solid #dfdfdf;
+	position: absolute;
+	top: 0;
+	left: 316px;
+}
+.product-switching-effect .tab-item li .v-5 {
+	width: 247px;
+	height: 25px;
+	font-size: 18px;
+	line-height: 18px;
+	color: #999;
+	font-family: 'arial';
+	position: absolute;
+	right: 0;
+	top: 511px;
+	padding: 0 20px;
+	box-sizing: border-box;
+	background: url(../img/201901091013.png) no-repeat 20px bottom;
+}
+.product-switching-effect .tab-item li .v-6 {
+	position: absolute;
+	right: 0;
+	top: 605px;
+	width: 205px;
+	font-size: 16px;
+	line-height: 24px;
+	color: #666;
+}
+.product-switching-effect .toggle-button {
+	width: 132px;
+	height: 43px;
+	position: absolute;
+	top: 14px;
+	right: 0;
+	display: flex;
+	justify-content: space-between;
+}
+.product-switching-effect .toggle-button span {
+	width: 59px;
+	height: 41px;
+	border: 1px solid #999;
+	border-radius: 8px;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: all 0.3s linear;
+}
+.product-switching-effect .toggle-button span .icon-jiantou {
+	font-size: 40px;
+	color: #999;
+	transition: all 0.3s linear;
+}
+.product-switching-effect .toggle-button .front .icon-jiantou {
+	transform: rotateZ(-90deg);
+}
+.product-switching-effect .toggle-button .after .icon-jiantou {
+	transform: rotateZ(90deg);
+}
+.product-switching-effect .toggle-button span:hover {
+	background: #b12f2a;
+	border: 1px solid #b12f2a;
+	transition: all 0.3s linear;
+}
+.product-switching-effect .toggle-button span:hover .icon-jiantou{
+	color: #fff;
+	transition: all 0.3s linear;
+}
+
+.product-switching-effect .tab-list {
+	width: 228px;
+	/*border: 1px solid red;*/
+	position: absolute;
+	right: 0;
+	top: 577px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+.product-switching-effect .tab-list .tab-list-item {
+	/*border: 1px solid blue;*/
+	width: 98px;
+	height: 25px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 23px 0 0 0;
+}
+.product-switching-effect .tab-list .tab-list-item .icon {
+	width: 25px;
+	height: 25px;
+	background: #999;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transform: rotateZ(90deg);
+	color: #fff;
+	transition: all 0.3s ease-out;
+}
+.product-switching-effect .tab-list .tab-list-item .icon .icon-jiantou {
+	font-size: 18px;
+}
+.product-switching-effect .tab-list .tab-list-item:nth-child(1) {
+	margin: 0;
+}
+.product-switching-effect .tab-list .tab-list-item:nth-child(2) {
+	margin: 0;
+}
+.product-switching-effect .tab-list .active a {
+	color: #b12f2a;
+	transition: all 0.3s ease-out;
+}
+.product-switching-effect .tab-list .active .icon {
+	background: #b12f2a;
+	transition: all 0.3s ease-out;
+}
