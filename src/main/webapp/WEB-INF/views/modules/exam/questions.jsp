@@ -35,6 +35,7 @@
                     <a class="dropdown-toggle" data-toggle="dropdown"  title="个人信息">您好, ${userName}&nbsp; 您的单位:${company}&nbsp;您的场次:${scene}&nbsp;您的考号:${studentId}&nbsp;</a>
                 </li>
                 <li><a href="${logout}" title="退出考试">退出考试</a></li>
+                <li><a href="#" title="退出考试" onclick="js_delete()">ddd</a></li>
                 <li>&nbsp;</li>
             </ul>
         </div>
@@ -143,12 +144,19 @@
                 success: function (data) {
                     if(data==true){
                         swal({
+                            title : "",
                             text: "感谢您参加2019年房山区教育系统团队活动课比赛理论考试。",
-                            type: "success"
-                        },function(isConfirm){
-
-                        });
-
+                            type: 'success',
+                            showCancelButton : true,
+                            closeOnConfirm : false,
+                            animation : "slide-from-top"
+                        }, function(inputValue) {
+                            if(inputValue){
+                                window.location.href = "<c:url value='${logout}'/>"
+                            }else {
+                                window.location.href = "<c:url value='${logout}'/>"
+                            }
+                        })
                     }
                 }
             });
@@ -178,20 +186,10 @@
         return userExamReply;
     }
 
-    function showConfirm(type,info,action,showCancelButton,showConfirmButton){
-        swal({
-            text: info,
-            type: type,
-            showCancelButton: showCancelButton,
-            cancelButtonText:"取消",
-            cancelButtonColor:"#B9B9B9",
-            showConfirmButton: showConfirmButton,
-            confirmButtonColor: "#DD6B55",
-            confirmButtonText: "确认",
-            closeOnConfirm:true,
-            closeOnCancel:true
-        },action);
-    };
+    function js_delete() {
+
+
+    }
 
 </script>
 
