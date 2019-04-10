@@ -50,7 +50,7 @@
 <input type="hidden" value="${company}" id="company"/>
 <input type="hidden" value="${scene}" id="scene"/>
 <input type="hidden" value="${studentId}" id="studentId"/>
-<input type="hidden" value="${examName}" id="examName"/>
+<input type="hidden" value="${examName}" id="paperId"/>
 
 
 <table id="contentTable" class="table table-striped table-bordered table-condensed" style="margin-top: 20px">
@@ -68,6 +68,7 @@
             <td style="font-weight:bold;font-size: 14px"> <br/>[${examQuestion.questionType}]&nbsp;&nbsp;${examQuestion.question}<br/>
                 <br/>
                 <input type="hidden" value="${examQuestion.correctAnswer}" id="answer_${examQuestion.questionId}"/>
+                <input type="hidden" value="${examQuestion.questionId}" id="question_${examQuestion.questionId}"/>
                 <c:choose>
                     <c:when test="${examQuestion.type == 0}">
                         <label><input name="radio_${examQuestion.questionId}" type="radio" value="A" />A:${examQuestion.answerContent.A}</label><br/>
@@ -100,6 +101,7 @@
 <script>
     function submitExam() {
         //答题录入考试
+        debugger;
         var questionIds = $("#questionIds").val();
         var studentId = $("#studentId").val();
         if(questionIds!=''){
@@ -139,6 +141,15 @@
                     studentId:studentId
                 },
                 success: function (data) {
+                    if(data==true){
+                        swal({
+                            text: "感谢您参加2019年房山区教育系统团队活动课比赛理论考试。",
+                            type: "success"
+                        },function(isConfirm){
+
+                        });
+
+                    }
                 }
             });
 
@@ -166,6 +177,21 @@
         userExamReply.scene = $("#scene").val();
         return userExamReply;
     }
+
+    function showConfirm(type,info,action,showCancelButton,showConfirmButton){
+        swal({
+            text: info,
+            type: type,
+            showCancelButton: showCancelButton,
+            cancelButtonText:"取消",
+            cancelButtonColor:"#B9B9B9",
+            showConfirmButton: showConfirmButton,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "确认",
+            closeOnConfirm:true,
+            closeOnCancel:true
+        },action);
+    };
 
 </script>
 
