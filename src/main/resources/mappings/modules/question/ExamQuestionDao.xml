@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etycx.marry.modules.question.dao.ExamQuestionDao">
+    
+	<sql id="examQuestionColumns">
+		a.id AS "id",
+		a.paper_type AS "paperType",
+		a.use_type AS "useType",
+		a.type AS "type",
+		a.question AS "question",
+		a.answer_content AS "answerContent",
+		a.create_time AS "createTime"
+	</sql>
+	
+	<sql id="examQuestionJoins">
+	</sql>
+    
+	<select id="get" resultType="ExamQuestion">
+		SELECT 
+			<include refid="examQuestionColumns"/>
+		FROM exam_question a
+		<include refid="examQuestionJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="ExamQuestion">
+		SELECT 
+			<include refid="examQuestionColumns"/>
+		FROM exam_question a
+		<include refid="examQuestionJoins"/>
+		<where>
+			
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="ExamQuestion">
+		SELECT 
+			<include refid="examQuestionColumns"/>
+		FROM exam_question a
+		<include refid="examQuestionJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO exam_question(
+			paper_type,
+			use_type,
+			type,
+			question,
+			answer_content,
+			create_time
+		) VALUES (
+			#{paperType},
+			#{useType},
+			#{type},
+			#{question},
+			#{answerContent},
+			#{createTime}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE exam_question SET 	
+			paper_type = #{paperType},
+			use_type = #{useType},
+			type = #{type},
+			question = #{question},
+			answer_content = #{answerContent},
+			create_time = #{createTime}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM exam_question
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

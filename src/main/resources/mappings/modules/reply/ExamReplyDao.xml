@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etycx.marry.modules.reply.dao.ExamReplyDao">
+    
+	<sql id="examReplyColumns">
+		a.id AS "id",
+		a.question_id AS "questionId",
+		a.paper_id AS "paperId",
+		a.student_id AS "studentId",
+		a.user_name AS "userName",
+		a.company AS "company",
+		a.scene AS "scene",
+		a.user_answer AS "userAnswer",
+		a.score AS "score",
+		a.correct AS "correct",
+		a.create_time AS "createTime"
+	</sql>
+	
+	<sql id="examReplyJoins">
+	</sql>
+    
+	<select id="get" resultType="ExamReply">
+		SELECT 
+			<include refid="examReplyColumns"/>
+		FROM exam_reply a
+		<include refid="examReplyJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="ExamReply">
+		SELECT 
+			<include refid="examReplyColumns"/>
+		FROM exam_reply a
+		<include refid="examReplyJoins"/>
+		<where>
+			
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="ExamReply">
+		SELECT 
+			<include refid="examReplyColumns"/>
+		FROM exam_reply a
+		<include refid="examReplyJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO exam_reply(
+			question_id,
+			paper_id,
+			student_id,
+			user_name,
+			company,
+			scene,
+			user_answer,
+			score,
+			correct,
+			create_time
+		) VALUES (
+			#{questionId},
+			#{paperId},
+			#{studentId},
+			#{userName},
+			#{company},
+			#{scene},
+			#{userAnswer},
+			#{score},
+			#{correct},
+			#{createTime}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE exam_reply SET 	
+			question_id = #{questionId},
+			paper_id = #{paperId},
+			student_id = #{studentId},
+			user_name = #{userName},
+			company = #{company},
+			scene = #{scene},
+			user_answer = #{userAnswer},
+			score = #{score},
+			correct = #{correct},
+			create_time = #{createTime}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM exam_reply
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

@@ -29,10 +29,10 @@
 <div id="main">
     <div id="header" class="navbar navbar-fixed-top">
         <div class="navbar-inner">
-            <div class="brand"><span id="productName" style="margin-left: 20px">在线考试&nbsp; &nbsp; 试卷类型【A】</span></div>
+            <div class="brand"><span id="productName" style="margin-left: 20px">${examName}</span></div>
             <ul id="userControl" class="nav pull-right">
                 <li id="userInfo" class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" title="个人信息">您好, ${userName}&nbsp; 您的学号:${studentId}&nbsp;<span id="notifyNum" class="label label-info hide"></span></a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" title="个人信息">您好, ${userName}&nbsp; 您的单位:${company}&nbsp;您的场次:${scene}&nbsp;您的考号:${studentId}&nbsp;<span id="notifyNum" class="label label-info hide"></span></a>
                 </li>
                 <li><a href="${logout}" title="退出考试">退出考试</a></li>
                 <li>&nbsp;</li>
