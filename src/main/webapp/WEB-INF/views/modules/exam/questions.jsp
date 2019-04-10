@@ -29,10 +29,10 @@
 <div id="main">
     <div id="header" class="navbar navbar-fixed-top">
         <div class="navbar-inner">
-            <div class="brand"><span id="productName" style="margin-left: 20px">${examName}</span></div>
+            <div class="brand"><span id="productName" style="margin-left: 20px">${exam}</span></div>
             <ul id="userControl" class="nav pull-right">
                 <li id="userInfo" class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" title="个人信息">您好, ${userName}&nbsp; 您的单位:${company}&nbsp;您的场次:${scene}&nbsp;您的考号:${studentId}&nbsp;<span id="notifyNum" class="label label-info hide"></span></a>
+                    <a class="dropdown-toggle" data-toggle="dropdown"  title="个人信息">您好, ${userName}&nbsp; 您的单位:${company}&nbsp;您的场次:${scene}&nbsp;您的考号:${studentId}&nbsp;</a>
                 </li>
                 <li><a href="${logout}" title="退出考试">退出考试</a></li>
                 <li>&nbsp;</li>
@@ -45,6 +45,14 @@
     </div>
 </div>
 
+<input type="hidden" value="${examQuestions.questionIds}" id="questionIds"/>
+<input type="hidden" value="${userName}" id="userName"/>
+<input type="hidden" value="${company}" id="company"/>
+<input type="hidden" value="${scene}" id="scene"/>
+<input type="hidden" value="${studentId}" id="studentId"/>
+<input type="hidden" value="${examName}" id="examName"/>
+
+
 <table id="contentTable" class="table table-striped table-bordered table-condensed" style="margin-top: 20px">
     <thead>
     <tr>
@@ -53,39 +61,113 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <td style="text-align: center;">1</td>
-        <td style="font-weight:bold;font-size: 14px"> <br/>[选择题]&nbsp;&nbsp;党的十九大的主题是：不忘初心，____，高举中国特色社会主义伟大旗帜，决胜全面建成小康社会，夺取新时代中国特色社会主义伟大胜利，为实现中华民族伟大复兴的中国梦不懈奋斗。<br/>
-            <br/>
-            <input name="radio+${examQuestion.questionId}" type="radio" value="A" >A:党的十九大的主题是：不忘初心，____<br/>
-            <input name="radio+${examQuestion.questionId}" type="radio" value="B" />B:党的十九大的主题是：不忘初心，____<br/>
-            <input name="radio+${examQuestion.questionId}" type="radio" value="C" />C:党的十九大的主题是：不忘初心，____<br/>
-            <input name="radio+${examQuestion.questionId}" type="radio" value="D" />D:党的十九大的主题是：不忘初心，____<br/>
-            <br/>
-        </td>
-    </tr>
-    <tr>
-        <td style="text-align: center;">2</td>
-        <td style="font-weight:bold;font-size: 14px"> <br/>[判断题]&nbsp;&nbsp;党的十九大的主题是：不忘初心，____，高举中国特色社会主义伟大旗帜，决胜全面建成小康社会，夺取新时代中国特色社会主义伟大胜利，为实现中华民族伟大复兴的中国梦不懈奋斗。<br/>
-            <br/>
-            <input name="radio+${examQuestion.questionId}" type="radio" value="1" >正确
-            <input name="radio+${examQuestion.questionId}" type="radio" value="0" />错误<br/>
-            <br/>
-        </td>
-    </tr>
-    <tr>
-        <td style="text-align: center;">3</td>
-        <td style="font-weight:bold;font-size: 14px"> <br/>党的十九大的主题是：不忘初心，____，高举中国特色社会主义伟大旗帜，决胜全面建成小康社会，夺取新时代中国特色社会主义伟大胜利，为实现中华民族伟大复兴的中国梦不懈奋斗。<br/>
-            <br/>
-            <input name="radio+${examQuestion.questionId}" type="radio" value="A" >A:党的十九大的主题是：不忘初心，____<br/>
-            <input name="radio+${examQuestion.questionId}" type="radio" value="B" />B:党的十九大的主题是：不忘初心，____<br/>
-            <input name="radio+${examQuestion.questionId}" type="radio" value="C" />C:党的十九大的主题是：不忘初心，____<br/>
-            <input name="radio+${examQuestion.questionId}" type="radio" value="D" />D:党的十九大的主题是：不忘初心，____<br/>
-            <br/>
-        </td>
-    </tr>
+    <c:forEach items="${examQuestions.questionList}" var="examQuestion" varStatus="indexs">
+
+        <tr>
+            <td style="text-align: center;" id="index_${examQuestion.questionId}">${indexs.index+1}</td>
+            <td style="font-weight:bold;font-size: 14px"> <br/>[${examQuestion.questionType}]&nbsp;&nbsp;${examQuestion.question}<br/>
+                <br/>
+                <input type="hidden" value="${examQuestion.correctAnswer}" id="answer_${examQuestion.questionId}"/>
+                <c:choose>
+                    <c:when test="${examQuestion.type == 0}">
+                        <label><input name="radio_${examQuestion.questionId}" type="radio" value="A" />A:${examQuestion.answerContent.A}</label><br/>
+                        <label><input name="radio_${examQuestion.questionId}" type="radio" value="B" />B:${examQuestion.answerContent.B}</label><br/>
+                        <label><input name="radio_${examQuestion.questionId}" type="radio" value="C" />C:${examQuestion.answerContent.C}</label><br/>
+                        <label><input name="radio_${examQuestion.questionId}" type="radio" value="D" />D:${examQuestion.answerContent.D}</label><br/>
+                    </c:when>
+                    <c:otherwise>
+                        <label><input name="radio_${examQuestion.questionId}" type="radio" value="1" >正确</label>
+                        <label><input name="radio_${examQuestion.questionId}" type="radio" value="0" />错误</label><br/>
+                    </c:otherwise>
+                </c:choose>
+                <br/>
+            </td>
+        </tr>
+    </c:forEach>
     </tbody>
 </table>
+
+<div id="foot" class="navbar navbar-fixed-foot">
+    <div class="navbar-inner">
+        <div class="brand"><span id="productNameFoot" style="margin-left: 20px">请再次确认答题完毕</span></div>
+        <ul id="userControlFoot" class="nav pull-right">
+            <li><a href="#" title="提交答案" onclick="submitExam()">提交答案</a></li>
+            <li>&nbsp;</li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    function submitExam() {
+        //答题录入考试
+        var questionIds = $("#questionIds").val();
+        var studentId = $("#studentId").val();
+        if(questionIds!=''){
+            var questionIdArrays = questionIds.split(',');
+            for ( var i = 0; i <questionIdArrays.length; i++){
+                //校验是否有未完成的试题
+                var radioName = 'radio_'+questionIdArrays[i];
+                var select_Id = $('input[name="'+radioName+'"]:checked').val();
+                if(typeof(select_Id) =="undefined"){
+                    swal("您有未完成的试题");
+                    return;
+                }
+            }
+            for ( var j = 0; j <questionIdArrays.length; j++){
+                // 0错误1为正确
+                var correct = 0;
+                var radioName = 'radio_'+questionIdArrays[j];
+                var userAnswer = $('input[name="'+radioName+'"]:checked').val();
+                var answerId = $("#answer_"+questionIdArrays[j]).val();
+                var questionId = $("#question_"+questionIdArrays[j]).val();
+                if(userAnswer == answerId){
+                    correct = 1;
+                }
+                addExamReply(createUserExamReply(questionId,userAnswer,correct));
+            }
+            //提交试题
+            var userExamReplyText = JSON.stringify(userExamReplyArray);
+            $.ajax({
+                url: "<c:url value='addExamReply'/>",
+                type:"POST",
+                cache: true,
+                async: false,
+                dataType:"json",
+                data: {
+                    userExamReplyArray:userExamReplyText,
+                    questionIds:questionIds,
+                    studentId:studentId
+                },
+                success: function (data) {
+                }
+            });
+
+
+        }
+
+    }
+
+    var userExamReplyArray = new Array();
+
+    function addExamReply(userExamReply) {
+        userExamReplyArray.push(userExamReply);
+    }
+
+
+    function createUserExamReply(questionId,userAnswer,correct) {
+        var userExamReply = new Object();
+        userExamReply.questionId = questionId;
+        userExamReply.userAnswer = userAnswer;
+        userExamReply.correct = correct;
+        userExamReply.studentId = $("#studentId").val();
+        userExamReply.paperId = $("#paperId").val();
+        userExamReply.userName = $("#userName").val();
+        userExamReply.company = $("#company").val();
+        userExamReply.scene = $("#scene").val();
+        return userExamReply;
+    }
+
+</script>
 
 
 

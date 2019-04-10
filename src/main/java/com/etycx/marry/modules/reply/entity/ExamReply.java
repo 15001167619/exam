@@ -3,6 +3,7 @@
  */
 package com.etycx.marry.modules.reply.entity;
 
+import com.alibaba.fastjson.JSONObject;
 import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -18,7 +19,7 @@ import com.etycx.marry.common.persistence.DataEntity;
 public class ExamReply extends DataEntity<ExamReply> {
 	
 	private static final long serialVersionUID = 1L;
-	private String questionId;		// 试题Id
+	private Integer questionId;		// 试题Id
 	private String paperId;		// 试卷 Id
 	private String studentId;		// 学号
 	private String userName;		// 姓名
@@ -37,15 +38,31 @@ public class ExamReply extends DataEntity<ExamReply> {
 		super(id);
 	}
 
-	@Length(min=1, max=11, message="试题Id长度必须介于 1 和 11 之间")
-	public String getQuestionId() {
-		return questionId;
+    public ExamReply(String paperId, Integer questionId, String studentId, Integer correct, String userName, String company, String scene, String userAnswer) {
+		this.paperId =paperId;
+		this.questionId = questionId;
+		this.studentId = studentId;
+		this.correct = correct;
+		this.userName = userName;
+		this.company = company;
+		this.scene = scene;
+		this.userAnswer = userAnswer;
+    }
+
+	public ExamReply(JSONObject jsonObject) {
+		if(jsonObject!=null){
+			this.paperId = jsonObject.getString("paperId");
+			this.questionId = jsonObject.getInteger("questionId");
+			this.studentId = jsonObject.getString("paperId");
+			this.correct = jsonObject.getInteger("correct");
+			this.userName = jsonObject.getString("userName");
+			this.company = jsonObject.getString("company");
+			this.scene = jsonObject.getString("scene");
+			this.userAnswer = jsonObject.getString("userAnswer");
+			this.score = this.correct == 1? 2 :0;
+		}
 	}
 
-	public void setQuestionId(String questionId) {
-		this.questionId = questionId;
-	}
-	
 	@Length(min=1, max=500, message="试卷 Id长度必须介于 1 和 500 之间")
 	public String getPaperId() {
 		return paperId;

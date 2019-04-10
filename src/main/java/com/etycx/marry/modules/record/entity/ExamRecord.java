@@ -30,7 +30,13 @@ public class ExamRecord extends DataEntity<ExamRecord> {
 		super(id);
 	}
 
-	@Length(min=1, max=500, message="学号长度必须介于 1 和 500 之间")
+    public ExamRecord(String studentId, String questionIds) {
+		this.studentId = studentId;
+		this.questionIds = questionIds;
+		this.createTime = new Date();
+    }
+
+    @Length(min=1, max=500, message="学号长度必须介于 1 和 500 之间")
 	public String getStudentId() {
 		return studentId;
 	}

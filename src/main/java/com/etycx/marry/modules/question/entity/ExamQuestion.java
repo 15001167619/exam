@@ -100,10 +100,13 @@ public class ExamQuestion extends DataEntity<ExamQuestion> {
 		JSONObject options = JSONObject.parseObject(examQuestion.getAnswerContent());
 		Map<String, Object> answerContentMap = new HashMap<>(7);
 		if(examQuestion.getType() == 0){
+			map.put("questionType","选择题");
 			answerContentMap.put("A",options.getString("A"));
 			answerContentMap.put("B",options.getString("B"));
 			answerContentMap.put("C",options.getString("C"));
 			answerContentMap.put("D",options.getString("D"));
+		}else {
+			map.put("questionType","判断题");
 		}
 		map.put("correctAnswer", options.getString("answer"));
 		map.put("answerContent", answerContentMap);

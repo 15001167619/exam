@@ -1,11 +1,20 @@
 package com.etycx.marry.exam;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.etycx.marry.common.utils.StringUtils;
 import com.etycx.marry.modules.question.entity.ExamQuestion;
 import com.etycx.marry.modules.question.service.ExamQuestionService;
+import com.etycx.marry.modules.record.entity.ExamRecord;
+import com.etycx.marry.modules.record.service.ExamRecordService;
+import com.etycx.marry.modules.reply.entity.ExamReply;
+import com.etycx.marry.modules.reply.service.ExamReplyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -16,6 +25,10 @@ public class ExamController {
 
     @Autowired
     private ExamQuestionService examQuestionService;
+    @Autowired
+    private ExamReplyService examReplyService;
+    @Autowired
+    private ExamRecordService examRecordService;
 
     @RequestMapping(value = "communistYouthLeague")
     public String loginIndexFirst() {
@@ -29,6 +42,9 @@ public class ExamController {
 
     @RequestMapping(value = "questions")
     public String loginFirst(String userName, String studentId,String company, String scene, Integer useType,Model model) {
+        if(StringUtils.isBlank(userName) || StringUtils.isBlank(studentId) || StringUtils.isBlank(company) || StringUtils.isBlank(scene)){
+            return "redirect:a";
+        }
         setUserInfo(userName,studentId,company,scene,model);
         String examName = getExamName();
         String groupName = "中学组";
@@ -36,7 +52,8 @@ public class ExamController {
             groupName = "小学组";
         }
         model.addAttribute("examQuestions", getExamQuestions(examName, useType));
-        model.addAttribute("examName", "2019年房山区教育系统团队课比赛理论考试("+groupName+examName+"卷）");
+        model.addAttribute("exam", "2019年房山区教育系统团队课比赛理论考试("+groupName+examName+"卷）");
+        model.addAttribute("examName", examName);
         model.addAttribute("logout", "logoutFirst");
         return "modules/exam/questions";
     }
@@ -87,8 +104,8 @@ public class ExamController {
     private Map<String, Object> getExamQuestions(String examName,Integer useType){
         Map<String,Object> map = new HashMap<>(2);
         Map<String,Object> searchMap = new HashMap<>(2);
-        map.put("paperType",examName);
-        map.put("useType",useType);
+        searchMap.put("paperType",examName);
+        searchMap.put("useType",useType);
         List<Integer> ids = examQuestionService.getQuestionIds(searchMap);
         Collections.shuffle(ids);
         Collections.shuffle(ids);
@@ -103,6 +120,30 @@ public class ExamController {
                 .collect(Collectors.joining(",")));
         map.put("questionList",resultMap);
         return map;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "addExamReply", method = RequestMethod.POST)
+    public Object addExamReply(String userExamReplyArray,String studentId,String questionIds){
+        try {
+            JSONArray examReplyArray = JSONObject.parseArray(userExamReplyArray);
+            List<ExamReply> examReplyList = getExamReplyList(examReplyArray);
+            examReplyService.saveReplyList(examReplyList);
+            examRecordService.save(new ExamRecord(studentId,questionIds));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    private List<ExamReply> getExamReplyList(JSONArray jsonArray){
+        List<ExamReply> list = new ArrayList<>(40);
+        for (Object object : jsonArray) {
+            JSONObject jsonObject = (JSONObject)object;
+            list.add(new ExamReply(jsonObject));
+        }
+        return list;
     }
 
 }

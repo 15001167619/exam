@@ -19,7 +19,7 @@ import com.etycx.marry.modules.reply.dao.ExamReplyDao;
  * @version 2019-04-10
  */
 @Service
-@Transactional(readOnly = true)
+@Transactional(readOnly = false)
 public class ExamReplyService extends CrudService<ExamReplyDao, ExamReply> {
 
 	public ExamReply get(String id) {
@@ -43,5 +43,8 @@ public class ExamReplyService extends CrudService<ExamReplyDao, ExamReply> {
 	public void delete(ExamReply examReply) {
 		super.delete(examReply);
 	}
-	
+
+	public int saveReplyList(List<ExamReply> examReplyList) {
+		return dao.insertExamReply(examReplyList);
+	}
 }

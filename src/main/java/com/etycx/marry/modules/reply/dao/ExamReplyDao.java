@@ -7,6 +7,8 @@ import com.etycx.marry.common.persistence.CrudDao;
 import com.etycx.marry.common.persistence.annotation.MyBatisDao;
 import com.etycx.marry.modules.reply.entity.ExamReply;
 
+import java.util.List;
+
 /**
  * 我的回答DAO接口
  * @author 武海升
@@ -14,5 +16,6 @@ import com.etycx.marry.modules.reply.entity.ExamReply;
  */
 @MyBatisDao
 public interface ExamReplyDao extends CrudDao<ExamReply> {
-	
+
+    int insertExamReply(List<ExamReply> list);
 }
