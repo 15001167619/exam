@@ -69,32 +69,46 @@
 		<label id="loginError" class="error">${message}</label>
 	</div>
 </div>
-<h1 class="form-signin-heading">${fns:getConfig('productName')}</h1>
-<form id="loginForm" name="loginIndexFirst" class="form-signin" action="" method="post">
+<h6 class="form-signin-heading">欢迎参加2019年房山区教育系统团队活动课比赛理论考试</h6><br/>
+<h7 class="form-signin-heading">请填写姓名、单位、考号、场次</h7>
+<form id="loginForm" name="loginIndexFirst" class="form-signin" action="" method="post" style="margin-top: 40px">
+	<input type="hidden" id="useType" name="useType" value="2">
 	<label class="input-label" >姓名</label>
 	<input type="text" id="userName" name="userName" class="input-block-level required">
-	<label class="input-label" >学号</label>
+	<label class="input-label" >单位</label>
+	<input type="text" id="company" name="company" class="input-block-level required">
+	<label class="input-label" >考号</label>
 	<input type="text" id="studentId" name="studentId" class="input-block-level required">
-	<input class="btn btn-large btn-primary" type="button" value="登 录" onclick="loginFirst()"/>&nbsp;&nbsp;
+	<label class="input-label" >场次</label>
+	<input type="text" id="scene" name="scene" class="input-block-level required">
+	<input class="btn btn-large btn-primary" type="button"  value="开始考试" onclick="loginFirst()" style="text-align: center;"/>&nbsp;&nbsp;
 </form>
-<div class="footer">
-	<a href="${pageContext.request.contextPath}${fns:getAdminPath()}">${fns:getConfig('productName')}</a>
-</div>
+
 <script src="${ctxStatic}/flash/zoom.min.js" type="text/javascript"></script>
 
 <script>
 	function loginFirst() {
 		var userName = $('#userName').val();
 		var studentId = $('#studentId').val();
+		var company = $('#company').val();
+		var scene = $('#scene').val();
 		if(userName == ""){
 			swal("姓名未填写", "", "error");
 			return;
 		}
-		if(studentId == ""){
-			swal("学号未填写", "", "error");
+		if(company == ""){
+			swal("单位未填写", "", "error");
 			return;
 		}
-		document.loginIndexFirst.action = "<c:url value='loginFirst'/>";
+		if(studentId == ""){
+			swal("考号未填写", "", "error");
+			return;
+		}
+		if(scene == ""){
+			swal("场次未填写", "", "error");
+			return;
+		}
+		document.loginIndexFirst.action = "<c:url value='questions'/>";
 		document.loginIndexFirst.submit();
 	}
 </script>
