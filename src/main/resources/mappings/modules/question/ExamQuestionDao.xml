@@ -90,5 +90,17 @@
 		DELETE FROM exam_question
 		WHERE id = #{id}
 	</update>
+
+	<select id="getQuestionIds" resultType="int">
+        select id from exam_question where use_type = #{useType} and paper_type = #{paperType}
+    </select>
+
+	<select id="findExamQuestionByIds" resultType="ExamQuestion">
+		select *  from exam_question
+		where id in
+		<foreach collection="questionIds" item="questionId" open="(" close=")" separator=",">
+			#{questionId}
+		</foreach>
+	</select>
 	
 </mapper>

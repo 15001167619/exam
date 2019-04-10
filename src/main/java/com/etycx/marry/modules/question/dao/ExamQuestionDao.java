@@ -7,6 +7,9 @@ import com.etycx.marry.common.persistence.CrudDao;
 import com.etycx.marry.common.persistence.annotation.MyBatisDao;
 import com.etycx.marry.modules.question.entity.ExamQuestion;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * 试题管理DAO接口
  * @author 武海升
@@ -14,5 +17,8 @@ import com.etycx.marry.modules.question.entity.ExamQuestion;
  */
 @MyBatisDao
 public interface ExamQuestionDao extends CrudDao<ExamQuestion> {
-	
+
+    List<Integer> getQuestionIds(Map<String, Object> map);
+
+    List<ExamQuestion> findExamQuestionByIds(List<Integer> ids);
 }

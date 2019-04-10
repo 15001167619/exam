@@ -4,6 +4,7 @@
 package com.etycx.marry.modules.question.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,5 +44,12 @@ public class ExamQuestionService extends CrudService<ExamQuestionDao, ExamQuesti
 	public void delete(ExamQuestion examQuestion) {
 		super.delete(examQuestion);
 	}
-	
+
+	public List<Integer> getQuestionIds(Map<String,Object> map) {
+		return dao.getQuestionIds(map);
+	}
+
+	public List<ExamQuestion> findExamQuestionByIds(List<Integer> ids) {
+		return dao.findExamQuestionByIds(ids);
+	}
 }
