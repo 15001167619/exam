@@ -124,6 +124,16 @@ public class LoginController extends BaseController{
 		return "modules/sys/sysLogin";
 	}
 
+	@RequestMapping(value = "${adminPath}/loginIndexFirst")
+	public String loginIndexFirst() {
+		return "modules/exam/indexFirst";
+	}
+
+	@RequestMapping(value = "${adminPath}/loginIndexSecond")
+	public String loginIndexSecond() {
+		return "modules/exam/indexSecond";
+	}
+
 	/**
 	 * 登录成功，进入管理首页
 	 */
