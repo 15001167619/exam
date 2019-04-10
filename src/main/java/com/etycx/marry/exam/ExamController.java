@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class ExamController {
 
-    @RequestMapping(value = "loginIndexFirst")
+    @RequestMapping(value = "indexFirst")
     public String loginIndexFirst() {
         return "modules/exam/indexFirst";
     }
 
-    @RequestMapping(value = "loginIndexSecond")
+    @RequestMapping(value = "indexSecond")
     public String loginIndexSecond() {
         return "modules/exam/indexSecond";
     }
@@ -29,12 +29,12 @@ public class ExamController {
 
     @RequestMapping(value = "logoutFirst")
     public String logoutFirst() {
-        return "redirect:"+ Global.getAdminPath()+"/loginIndexFirst";
+        return "redirect:indexFirst";
     }
 
     @RequestMapping(value = "logoutSecond")
     public String logoutSecond() {
-        return "redirect:"+ Global.getAdminPath()+"/loginIndexSecond";
+        return "redirect:indexSecond";
     }
 
     @RequestMapping(value = "loginSecond")
