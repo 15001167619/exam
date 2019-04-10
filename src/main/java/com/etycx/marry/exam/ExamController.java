@@ -7,8 +7,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping(value = "${adminPath}")
 public class ExamController {
+
+    @RequestMapping(value = "loginIndexFirst")
+    public String loginIndexFirst() {
+        return "modules/exam/indexFirst";
+    }
+
+    @RequestMapping(value = "loginIndexSecond")
+    public String loginIndexSecond() {
+        return "modules/exam/indexSecond";
+    }
 
     @RequestMapping(value = "loginFirst")
     public String loginFirst(String userName, String studentId, Model model) {

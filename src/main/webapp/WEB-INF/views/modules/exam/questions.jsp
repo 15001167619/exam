@@ -1,10 +1,29 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
-<head>
-    <title>开始答题</title>
-    <meta name="decorator" content="default"/>
-</head>
+<%@ page contentType="text/html;charset=UTF-8" %><meta http-equiv="Content-Type" content="text/html;charset=utf-8" /><meta name="author" content="http://jeesite.com/"/>
+<meta name="renderer" content="webkit"><meta http-equiv="X-UA-Compatible" content="IE=8,IE=9,IE=10" />
+<meta http-equiv="Expires" content="0"><meta http-equiv="Cache-Control" content="no-cache"><meta http-equiv="Cache-Control" content="no-store">
+<script src="${ctxStatic}/jquery/jquery-1.8.3.min.js" type="text/javascript"></script>
+<link href="${ctxStatic}/bootstrap/2.3.1/css_${not empty cookie.theme.value ? cookie.theme.value : 'cerulean'}/bootstrap.min.css" type="text/css" rel="stylesheet" />
+<script src="${ctxStatic}/bootstrap/2.3.1/js/bootstrap.min.js" type="text/javascript"></script>
+<link href="${ctxStatic}/bootstrap/2.3.1/awesome/font-awesome.min.css" type="text/css" rel="stylesheet" />
+<!--[if lte IE 7]><link href="${ctxStatic}/bootstrap/2.3.1/awesome/font-awesome-ie7.min.css" type="text/css" rel="stylesheet" /><![endif]-->
+<!--[if lte IE 6]><link href="${ctxStatic}/bootstrap/bsie/css/bootstrap-ie6.min.css" type="text/css" rel="stylesheet" />
+<script src="${ctxStatic}/bootstrap/bsie/js/bootstrap-ie.min.js" type="text/javascript"></script><![endif]-->
+<link href="${ctxStatic}/jquery-select2/3.4/select2.min.css" rel="stylesheet" />
+<script src="${ctxStatic}/jquery-select2/3.4/select2.min.js" type="text/javascript"></script>
+<link href="${ctxStatic}/jquery-validation/1.11.0/jquery.validate.min.css" type="text/css" rel="stylesheet" />
+<script src="${ctxStatic}/jquery-validation/1.11.0/jquery.validate.min.js" type="text/javascript"></script>
+<link href="${ctxStatic}/jquery-jbox/2.3/Skins/Bootstrap/jbox.min.css" rel="stylesheet" />
+<script src="${ctxStatic}/jquery-jbox/2.3/jquery.jBox-2.3.min.js" type="text/javascript"></script>
+<script src="${ctxStatic}/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+<script src="${ctxStatic}/common/mustache.min.js" type="text/javascript"></script>
+<link href="${ctxStatic}/common/jeesite.css" type="text/css" rel="stylesheet" />
+<script src="${ctxStatic}/common/jeesite.js" type="text/javascript"></script>
+<script type="text/javascript">var ctx = '${ctx}', ctxStatic='${ctxStatic}';</script>
+<link href="${ctxStatic}/myalert/sweetalert.css" type="text/css" rel="stylesheet" />
+<script src="${ctxStatic}/myalert/sweetalert.min.js" type="text/javascript"></script>
 <body>
 
 <div id="main">
@@ -29,26 +48,42 @@
 <table id="contentTable" class="table table-striped table-bordered table-condensed" style="margin-top: 20px">
     <thead>
     <tr>
-        <th>名称</th>
-        <th>排序</th>
-        <th>添加时间</th>
-
+        <th style="text-align: center;" width="50px" bgcolor="#7cb96e">题号</th>
+        <th style="text-align: center;">题目内容</th>
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${page.list}" var="marryBanner">
-        <tr>
-            <td><a href="${ctx}/banner/marryBanner/form?id=${marryBanner.id}">
-                    ${marryBanner.name}
-            </a></td>
-            <td>${marryBanner.sort}</td>
-            <td><fmt:formatDate value="${marryBanner.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-            <shiro:hasPermission name="banner:marryBanner:edit"><td>
-                <a href="${ctx}/banner/marryBanner/form?id=${marryBanner.id}">修改</a>
-                <a href="${ctx}/banner/marryBanner/delete?id=${marryBanner.id}" onclick="return confirmx('确认要删除该轮播图吗？', this.href)">删除</a>
-            </td></shiro:hasPermission>
-        </tr>
-    </c:forEach>
+    <tr>
+        <td style="text-align: center;">1</td>
+        <td style="font-weight:bold;font-size: 14px"> <br/>[选择题]&nbsp;&nbsp;党的十九大的主题是：不忘初心，____，高举中国特色社会主义伟大旗帜，决胜全面建成小康社会，夺取新时代中国特色社会主义伟大胜利，为实现中华民族伟大复兴的中国梦不懈奋斗。<br/>
+            <br/>
+            <input name="radio+${examQuestion.questionId}" type="radio" value="A" >A:党的十九大的主题是：不忘初心，____<br/>
+            <input name="radio+${examQuestion.questionId}" type="radio" value="B" />B:党的十九大的主题是：不忘初心，____<br/>
+            <input name="radio+${examQuestion.questionId}" type="radio" value="C" />C:党的十九大的主题是：不忘初心，____<br/>
+            <input name="radio+${examQuestion.questionId}" type="radio" value="D" />D:党的十九大的主题是：不忘初心，____<br/>
+            <br/>
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">2</td>
+        <td style="font-weight:bold;font-size: 14px"> <br/>[判断题]&nbsp;&nbsp;党的十九大的主题是：不忘初心，____，高举中国特色社会主义伟大旗帜，决胜全面建成小康社会，夺取新时代中国特色社会主义伟大胜利，为实现中华民族伟大复兴的中国梦不懈奋斗。<br/>
+            <br/>
+            <input name="radio+${examQuestion.questionId}" type="radio" value="1" >正确
+            <input name="radio+${examQuestion.questionId}" type="radio" value="0" />错误<br/>
+            <br/>
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">3</td>
+        <td style="font-weight:bold;font-size: 14px"> <br/>党的十九大的主题是：不忘初心，____，高举中国特色社会主义伟大旗帜，决胜全面建成小康社会，夺取新时代中国特色社会主义伟大胜利，为实现中华民族伟大复兴的中国梦不懈奋斗。<br/>
+            <br/>
+            <input name="radio+${examQuestion.questionId}" type="radio" value="A" >A:党的十九大的主题是：不忘初心，____<br/>
+            <input name="radio+${examQuestion.questionId}" type="radio" value="B" />B:党的十九大的主题是：不忘初心，____<br/>
+            <input name="radio+${examQuestion.questionId}" type="radio" value="C" />C:党的十九大的主题是：不忘初心，____<br/>
+            <input name="radio+${examQuestion.questionId}" type="radio" value="D" />D:党的十九大的主题是：不忘初心，____<br/>
+            <br/>
+        </td>
+    </tr>
     </tbody>
 </table>
 
