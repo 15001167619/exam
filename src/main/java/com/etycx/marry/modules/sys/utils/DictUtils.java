@@ -3,8 +3,6 @@
  */
 package com.etycx.marry.modules.sys.utils;
 
-import com.etycx.marry.modules.dict.dao.MarryDictDao;
-import com.etycx.marry.modules.dict.entity.MarryDict;
 import com.etycx.marry.modules.sys.entity.Dict;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -25,7 +23,6 @@ import java.util.Map;
 public class DictUtils {
 	
 	private static DictDao dictDao = SpringContextHolder.getBean(DictDao.class);
-	private static MarryDictDao marryDictDao = SpringContextHolder.getBean(MarryDictDao.class);
 
 	public static final String CACHE_DICT_MAP = "dictMap";
 	
@@ -84,14 +81,7 @@ public class DictUtils {
 		return dictList;
 	}
 
-	public static List<MarryDict> getMarryDictList(Integer type,Integer parentId){
-		return marryDictDao.findList(new MarryDict(type,parentId));
-	}
-	public static String getMarryDictCategoryName(Integer parentId){
-		MarryDict marryDict = marryDictDao.getMarryDict(parentId);
-		return marryDict == null ?"" : marryDict.getLabel();
-	}
-	
+
 	/**
 	 * 返回字典列表（JSON）
 	 * @param type

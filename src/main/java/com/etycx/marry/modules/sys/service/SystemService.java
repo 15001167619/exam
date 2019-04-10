@@ -23,7 +23,6 @@ import com.etycx.marry.modules.sys.entity.User;
 import com.etycx.marry.modules.sys.security.SystemAuthorizingRealm;
 import com.etycx.marry.modules.sys.utils.LogUtils;
 import com.etycx.marry.modules.sys.utils.UserUtils;
-import com.etycx.marry.remote.redis.ICoreRedisService;
 import org.apache.shiro.session.Session;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,9 +57,6 @@ public class SystemService extends BaseService implements InitializingBean {
 	@Autowired
 	private SystemAuthorizingRealm systemRealm;
 
-	@Autowired
-	ICoreRedisService coreRedisService;
-	
 	public SessionDAO getSessionDao() {
 		return sessionDao;
 	}

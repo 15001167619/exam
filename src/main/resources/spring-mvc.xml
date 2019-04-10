@@ -98,24 +98,6 @@
 		</mvc:interceptor>
 	</mvc:interceptors>
 
-	<mvc:interceptors>
-		<bean class="com.etycx.marry.social.interceptor.ContextInterceptor" >
-			<property name="defaultLogin" value="/loginordinary" />
-			<!--定义拦截后重定向到其他登录处理页面 -->
-			<property name="defineUrls">
-				<map>
-					<entry key="/peoplecenter" value="/peoplecenter" />
-					<entry key="/personalinformation" value="/personalinformation" />
-					<entry key="/recentlybrowse" value="/recentlybrowse" />
-					<entry key="/myconcern" value="/myconcern" />
-					<entry key="/myevaluation" value="/myevaluation" />
-					<entry key="/mycoupon" value="/mycoupon" />
-					<entry key="/personalsharing" value="/personalsharing" />
-				</map>
-			</property>
-		</bean>
-	</mvc:interceptors>
-	
 	<!-- 支持Shiro对Controller的方法级AOP安全控制 begin-->
 	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor">
 		<property name="proxyTargetClass" value="true" />

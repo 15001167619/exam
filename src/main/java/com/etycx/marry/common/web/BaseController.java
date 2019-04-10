@@ -7,7 +7,6 @@ import com.etycx.marry.common.beanvalidator.BeanValidators;
 import com.etycx.marry.common.config.ConfigConstants;
 import com.etycx.marry.common.mapper.JsonMapper;
 import com.etycx.marry.common.utils.DateUtils;
-import com.etycx.marry.modules.baidu.ueditor.common.RandomUtils;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.slf4j.Logger;
@@ -218,31 +217,4 @@ public abstract class BaseController {
 		});
 	}
 
-	public Map<String,Object> uploadImages(MultipartFile upfile) {
-		Map<String, Object> params = new HashMap<>(5);
-		try{
-			String basePath = ConfigConstants.UPLOAD_PICTURE_FILE_PATH+ConfigConstants.PIC_PATH;
-			String visitUrl = "/image/"; //访问路径
-			String ext = com.etycx.marry.modules.baidu.ueditor.common.StringUtils.getExt(upfile.getOriginalFilename());
-			String fileName = String.valueOf(System.currentTimeMillis()).concat("_").concat(RandomUtils.getRandom(6)).concat(".").concat(ext);
-			StringBuilder sb = new StringBuilder();
-			sb.append(basePath).append("/").append(fileName);
-			visitUrl = visitUrl.concat(fileName);
-			File f = new File(sb.toString());
-			if(!f.exists()){
-				f.getParentFile().mkdirs();
-			}
-			OutputStream out = new FileOutputStream(f);
-			FileCopyUtils.copy(upfile.getInputStream(), out);
-			params.put("state", "SUCCESS");
-			params.put("url", visitUrl);
-			params.put("size", upfile.getSize());
-			params.put("original", fileName);
-			params.put("type", upfile.getContentType());
-		} catch (Exception e){
-			params.put("state", "ERROR");
-		}
-		return params;
-	}
-	
 }

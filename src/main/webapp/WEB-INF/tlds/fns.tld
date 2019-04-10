@@ -252,36 +252,4 @@
     <example>${fns:getTypeName(type,typeName)}</example>
   </function>
 
-  <function>
-    <description>根据type获取别名</description>
-    <name>getMarryDiaryName</name>
-    <function-class>com.etycx.marry.modules.sys.utils.MarryUtils</function-class>
-    <function-signature>java.lang.String getMarryDiaryName(java.lang.Integer)</function-signature>
-    <example>${fns:getMarryDiaryName(type)}</example>
-  </function>
-
-  <function>
-    <description>根据type获取别名</description>
-    <name>getMarryDictName</name>
-    <function-class>com.etycx.marry.modules.sys.utils.MarryUtils</function-class>
-    <function-signature>java.lang.String getMarryDictName(java.lang.Integer)</function-signature>
-    <example>${fns:getMarryDiaryName(type)}</example>
-  </function>
-
-  <function>
-    <description>获取自定义字典对象列表</description>
-    <name>getMarryDictList</name>
-    <function-class>com.etycx.marry.modules.sys.utils.DictUtils</function-class>
-    <function-signature>java.util.List getMarryDictList(java.lang.Integer,java.lang.Integer)</function-signature>
-    <example>${fns:getMarryDictList(type,parentId)}</example>
-  </function>
-
-  <function>
-    <description>获取自定义字典对象列表</description>
-    <name>getMarryDictCategoryName</name>
-    <function-class>com.etycx.marry.modules.sys.utils.DictUtils</function-class>
-    <function-signature>java.lang.String getMarryDictCategoryName(java.lang.Integer)</function-signature>
-    <example>${fns:getMarryDictCategoryName(parentId)}</example>
-  </function>
-  
 </taglib>

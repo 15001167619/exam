@@ -7,9 +7,9 @@
     <groupId>com.etycx.exam</groupId>
     <artifactId>exam</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>exam</packaging>
+    <packaging>war</packaging>
 
-    <name>marry</name>
+    <name>exam</name>
     <inceptionYear>2018-2019</inceptionYear>
 
     <!-- 项目属性 -->
@@ -64,15 +64,6 @@
     <!-- 设定主仓库，按设定顺序进行查找。 -->
     <repositories>
         <repository>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-            <id>maven-releases</id>
-            <name>public</name>
-            <url>http://123.56.15.166:8081/repository/maven-releases/</url>
-        </repository>
-
-        <repository>
             <id>jeesite-repos</id>
             <name>Jeesite Repository</name>
             <url>http://maven.aliyun.com/nexus/content/groups/public</url>
@@ -80,50 +71,9 @@
 
     </repositories>
 
-    <!-- 加载的是maven生命周期插件的jar包 -->
-    <pluginRepositories>
-        <pluginRepository>
-            <releases>
-                <updatePolicy>never</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-            <id>public</id>
-            <name>public</name>
-            <url>http://123.56.15.166:8081/repository/maven-releases/</url>
-        </pluginRepository>
-    </pluginRepositories>
-
-
 
     <!-- 依赖项定义 -->
     <dependencies>
-        <!-- 微博 -->
-        <dependency>
-            <groupId>com.belerweb</groupId>
-            <artifactId>weibo4j-oauth2</artifactId>
-            <version>2.1.1-beta2-3</version>
-        </dependency>
-        <!-- QQ -->
-        <dependency>
-            <groupId>net.gplatform</groupId>
-            <artifactId>Sdk4J</artifactId>
-            <version>2.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.muxiaoqian</groupId>
-            <artifactId>baidu-json</artifactId>
-            <version>1.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.muxiaoqian</groupId>
-            <artifactId>ueditor</artifactId>
-            <version>1.1.2</version>
-        </dependency>
-
         <!-- https://mvnrepository.com/artifact/commons-configuration/commons-configuration -->
         <dependency>
             <groupId>commons-configuration</groupId>
@@ -138,10 +88,6 @@
             <classifier>jdk15</classifier>
         </dependency>
 
-
-
-
-
         <!-- https://mvnrepository.com/artifact/commons-logging/commons-logging -->
         <dependency>
             <groupId>commons-logging</groupId>
@@ -149,20 +95,12 @@
             <version>1.2</version>
         </dependency>
 
-
         <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-redis -->
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-redis</artifactId>
             <version>1.5.2.RELEASE</version>
         </dependency>
-        <!--<dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
-            <version>2.7.3</version>
-        </dependency>-->
-
-
 
 
         <dependency>
@@ -171,11 +109,7 @@
             <version>${commons-httpclient.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>${commons-lang3.version}</version>
-        </dependency>
+
 
         <!-- https://mvnrepository.com/artifact/com.github.binarywang/weixin-java-mp -->
         <dependency>
@@ -324,17 +258,7 @@
             <version>${mssql.driver.version}</version>
             <scope>runtime</scope>
         </dependency>
-        <!-- PERSISTENCE end -->
-        <dependency>
-            <groupId>com.muxiaoqian</groupId>
-            <artifactId>dysms-dysmsapi</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.muxiaoqian</groupId>
-            <artifactId>dysms-core</artifactId>
-            <version>3.2.3</version>
-        </dependency>
+
         <!-- WEB begin -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -637,19 +561,6 @@
                     </warSourceExcludes>
                     <webappDirectory>${project.build.directory}/${project.artifactId}</webappDirectory>
                     <warName>${project.artifactId}</warName>
-                </configuration>
-            </plugin>
-           <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.6.2</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <encoding>UTF-8</encoding>
-                    <compilerArguments>
-                        <extdirs>${project.basedir}/src/main/webapp/WEB-INF/lib</extdirs>
-                    </compilerArguments>
                 </configuration>
             </plugin>
         </plugins>
