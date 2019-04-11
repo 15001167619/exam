@@ -20,35 +20,14 @@ public class ExamReply extends DataEntity<ExamReply> {
 	
 	private static final long serialVersionUID = 1L;
 	private Integer questionId;		// 试题Id
-	private Integer useType;		// 试题Id
-	private String paperId;		// 试卷 Id
 	private String studentId;		// 学号
-	private String userName;		// 姓名
-	private String company;		// 单位
-	private String scene;		// 场次
 	private String userAnswer;		// 我的答案
 	private Integer score;		// 分数
-	private Integer scoreSum;		// 分数
-	private Integer correctSum;		// 分数
-	private Integer questionSum;		// 分数
 	private Integer correct;		// 0错误1为正确
 	private Date createTime;		// 提交时间
 
-	public Integer getQuestionSum() {
-		return questionSum;
-	}
 
-	public void setQuestionSum(Integer questionSum) {
-		this.questionSum = questionSum;
-	}
 
-	public Integer getUseType() {
-		return useType;
-	}
-
-	public void setUseType(Integer useType) {
-		this.useType = useType;
-	}
 
 	public Integer getQuestionId() {
 		return questionId;
@@ -58,21 +37,6 @@ public class ExamReply extends DataEntity<ExamReply> {
 		this.questionId = questionId;
 	}
 
-	public Integer getScoreSum() {
-		return scoreSum;
-	}
-
-	public void setScoreSum(Integer scoreSum) {
-		this.scoreSum = scoreSum;
-	}
-
-	public Integer getCorrectSum() {
-		return correctSum;
-	}
-
-	public void setCorrectSum(Integer correctSum) {
-		this.correctSum = correctSum;
-	}
 
 	public ExamReply() {
 		super();
@@ -82,41 +46,16 @@ public class ExamReply extends DataEntity<ExamReply> {
 		super(id);
 	}
 
-    public ExamReply(String paperId, Integer questionId, String studentId, Integer correct, String userName, String company, String scene, String userAnswer) {
-		this.paperId =paperId;
-		this.questionId = questionId;
-		this.studentId = studentId;
-		this.correct = correct;
-		this.userName = userName;
-		this.company = company;
-		this.scene = scene;
-		this.userAnswer = userAnswer;
-    }
-
 	public ExamReply(JSONObject jsonObject) {
 		if(jsonObject!=null){
-			this.paperId = jsonObject.getString("paperId");
 			this.questionId = jsonObject.getInteger("questionId");
-			this.useType = jsonObject.getInteger("useType");
 			this.studentId = jsonObject.getString("studentId");
 			this.correct = jsonObject.getInteger("correct");
-			this.userName = jsonObject.getString("userName");
-			this.company = jsonObject.getString("company");
-			this.scene = jsonObject.getString("scene");
 			this.userAnswer = jsonObject.getString("userAnswer");
 			this.score = this.correct == 1? 2 :0;
 		}
 	}
 
-	@Length(min=1, max=500, message="试卷 Id长度必须介于 1 和 500 之间")
-	public String getPaperId() {
-		return paperId;
-	}
-
-	public void setPaperId(String paperId) {
-		this.paperId = paperId;
-	}
-	
 	@Length(min=1, max=500, message="学号长度必须介于 1 和 500 之间")
 	public String getStudentId() {
 		return studentId;
@@ -125,34 +64,7 @@ public class ExamReply extends DataEntity<ExamReply> {
 	public void setStudentId(String studentId) {
 		this.studentId = studentId;
 	}
-	
-	@Length(min=0, max=500, message="姓名长度必须介于 0 和 500 之间")
-	public String getUserName() {
-		return userName;
-	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-	
-	@Length(min=0, max=500, message="单位长度必须介于 0 和 500 之间")
-	public String getCompany() {
-		return company;
-	}
-
-	public void setCompany(String company) {
-		this.company = company;
-	}
-	
-	@Length(min=0, max=500, message="场次长度必须介于 0 和 500 之间")
-	public String getScene() {
-		return scene;
-	}
-
-	public void setScene(String scene) {
-		this.scene = scene;
-	}
-	
 	@Length(min=0, max=500, message="我的答案长度必须介于 0 和 500 之间")
 	public String getUserAnswer() {
 		return userAnswer;

@@ -6,6 +6,12 @@
 		a.id AS "id",
 		a.student_id AS "studentId",
 		a.question_ids AS "questionIds",
+		a.user_name AS "userName",
+		a.company AS "company",
+		a.scene AS "scene",
+		a.score_sum AS "scoreSum",
+		a.correct_sum AS "correctSum",
+		a.error_sum AS "errorSum",
 		a.create_time AS "createTime"
 	</sql>
 	
@@ -58,10 +64,22 @@
 		INSERT INTO exam_record(
 			student_id,
 			question_ids,
+			user_name,
+			company,
+			scene,
+			score_sum,
+			correct_sum,
+			error_sum,
 			create_time
 		) VALUES (
 			#{studentId},
 			#{questionIds},
+			#{userName},
+			#{company},
+			#{scene},
+			#{scoreSum},
+			#{correctSum},
+			#{errorSum},
 			#{createTime}
 		)
 	</insert>

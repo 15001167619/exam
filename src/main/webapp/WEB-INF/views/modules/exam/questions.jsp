@@ -130,6 +130,11 @@
             }
             //提交试题
             var userExamReplyText = JSON.stringify(userExamReplyArray);
+            var useType = $("#useType").val();
+            var paperId = $("#paperId").val();
+            var userName = $("#userName").val();
+            var company = $("#company").val();
+            var scene = $("#scene").val();
             $.ajax({
                 url: "<c:url value='addExamReply'/>",
                 type:"POST",
@@ -139,6 +144,11 @@
                 data: {
                     userExamReplyArray:userExamReplyText,
                     questionIds:questionIds,
+                    useType:useType,
+                    paperId:paperId,
+                    userName:userName,
+                    company:company,
+                    scene:scene,
                     studentId:studentId
                 },
                 success: function (data) {
@@ -179,11 +189,6 @@
         userExamReply.userAnswer = userAnswer;
         userExamReply.correct = correct;
         userExamReply.studentId = $("#studentId").val();
-        userExamReply.useType = $("#useType").val();
-        userExamReply.paperId = $("#paperId").val();
-        userExamReply.userName = $("#userName").val();
-        userExamReply.company = $("#company").val();
-        userExamReply.scene = $("#scene").val();
         return userExamReply;
     }
 
