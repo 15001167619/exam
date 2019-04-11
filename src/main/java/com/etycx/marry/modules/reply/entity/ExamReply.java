@@ -30,8 +30,17 @@ public class ExamReply extends DataEntity<ExamReply> {
 	private Integer score;		// 分数
 	private Integer scoreSum;		// 分数
 	private Integer correctSum;		// 分数
+	private Integer questionSum;		// 分数
 	private Integer correct;		// 0错误1为正确
 	private Date createTime;		// 提交时间
+
+	public Integer getQuestionSum() {
+		return questionSum;
+	}
+
+	public void setQuestionSum(Integer questionSum) {
+		this.questionSum = questionSum;
+	}
 
 	public Integer getUseType() {
 		return useType;
