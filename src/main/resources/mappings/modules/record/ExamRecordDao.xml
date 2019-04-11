@@ -12,6 +12,8 @@
 		a.score_sum AS "scoreSum",
 		a.correct_sum AS "correctSum",
 		a.error_sum AS "errorSum",
+		a.paper_id AS "paperId",
+		a.use_type AS "useType",
 		a.create_time AS "createTime"
 	</sql>
 	
@@ -71,6 +73,7 @@
 			correct_sum,
 			error_sum,
 			use_type,
+			paper_id,
 			create_time
 		) VALUES (
 			#{studentId},
@@ -82,6 +85,7 @@
 			#{correctSum},
 			#{errorSum},
 			#{useType},
+			#{paperId},
 			#{createTime}
 		)
 	</insert>

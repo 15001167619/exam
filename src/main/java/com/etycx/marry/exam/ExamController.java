@@ -125,7 +125,7 @@ public class ExamController {
 
     @ResponseBody
     @RequestMapping(value = "addExamReply", method = RequestMethod.POST)
-    public Object addExamReply(String userExamReplyArray,String studentId,String questionIds,Integer useType,String userName,String company,String scene){
+    public Object addExamReply(String userExamReplyArray,String studentId,String paperId,String questionIds,Integer useType,String userName,String company,String scene){
         try {
             JSONArray examReplyArray = JSONObject.parseArray(userExamReplyArray);
             List<ExamReply> examReplyList = getExamReplyList(examReplyArray);
@@ -133,7 +133,7 @@ public class ExamController {
             long correctSum = examReplyList.stream().collect(Collectors.summingInt(ExamReply::getCorrect));
             long errorSum = examReplyList.size()-correctSum;
             examReplyService.saveReplyList(examReplyList);
-            examRecordService.save(new ExamRecord(studentId,useType,userName,company,scene,questionIds,scoreSum,correctSum,errorSum));
+            examRecordService.save(new ExamRecord(studentId,paperId,useType,userName,company,scene,questionIds,scoreSum,correctSum,errorSum));
         } catch (Exception e) {
             e.printStackTrace();
             return false;

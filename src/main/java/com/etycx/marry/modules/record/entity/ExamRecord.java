@@ -19,6 +19,7 @@ public class ExamRecord extends DataEntity<ExamRecord> {
 	
 	private static final long serialVersionUID = 1L;
 	private String studentId;		// 学号
+	private String paperId;		// 学号
 	private Integer useType;		// 学号
 	private String userName;		// 学号
 	private String company;		// 学号
@@ -37,9 +38,18 @@ public class ExamRecord extends DataEntity<ExamRecord> {
 		super(id);
 	}
 
-    public ExamRecord(String studentId, Integer useType, String userName, String company, String scene, String questionIds, long scoreSum, long correctSum, long errorSum) {
+	public String getPaperId() {
+		return paperId;
+	}
+
+	public void setPaperId(String paperId) {
+		this.paperId = paperId;
+	}
+
+	public ExamRecord(String studentId, String paperId , Integer useType, String userName, String company, String scene, String questionIds, long scoreSum, long correctSum, long errorSum) {
 
 		this.studentId = studentId;
+		this.paperId = paperId;
 		this.useType = useType;
 		this.userName = userName;
 		this.company = company;

@@ -24,10 +24,30 @@
 	<form:form id="searchForm" modelAttribute="examRecord" action="${ctx}/record/examRecord/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
-		<ul class="ul-form">
-			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
-			<li class="clearfix"></li>
-		</ul>
+		<li><label>试卷</label>
+
+			<form:select path="paperId" class="input-medium">
+				<form:option value="" label="">全部试卷</form:option>
+				<form:options items="${fns:getDictList('paperType')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+			</form:select>
+		</li>
+		<li><label>考生组别</label>
+			<form:select path="useType" class="input-medium">
+				<form:option value="" label="">全部组别</form:option>
+				<form:options items="${fns:getDictList('useTpye')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+			</form:select>
+		</li>
+		<li><label>考生姓名</label>
+			<form:input path="userName" htmlEscape="false" maxlength="100" class="input-medium"/>
+		</li>
+		<li><label>考生单位</label>
+			<form:input path="company" htmlEscape="false" maxlength="100" class="input-medium"/>
+		</li>
+		<li><label>考生场次</label>
+			<form:input path="scene" htmlEscape="false" maxlength="100" class="input-medium"/>
+		</li>
+		<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询" onclick="return page();"/></li>
+		<li class="clearfix"></li>
 	</form:form>
 	<sys:message content="${message}"/>
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
