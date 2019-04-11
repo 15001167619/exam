@@ -70,6 +70,7 @@
 			score_sum,
 			correct_sum,
 			error_sum,
+			use_type,
 			create_time
 		) VALUES (
 			#{studentId},
@@ -80,6 +81,7 @@
 			#{scoreSum},
 			#{correctSum},
 			#{errorSum},
+			#{useType},
 			#{createTime}
 		)
 	</insert>
