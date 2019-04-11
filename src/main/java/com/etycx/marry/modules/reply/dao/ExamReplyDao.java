@@ -18,4 +18,7 @@ import java.util.List;
 public interface ExamReplyDao extends CrudDao<ExamReply> {
 
     int insertExamReply(List<ExamReply> list);
+
+    List<ExamReply> findExamList(ExamReply examReply);
+
 }

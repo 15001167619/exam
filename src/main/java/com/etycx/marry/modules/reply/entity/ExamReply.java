@@ -27,9 +27,35 @@ public class ExamReply extends DataEntity<ExamReply> {
 	private String scene;		// 场次
 	private String userAnswer;		// 我的答案
 	private Integer score;		// 分数
+	private Integer scoreSum;		// 分数
+	private Integer correctSum;		// 分数
 	private Integer correct;		// 0错误1为正确
 	private Date createTime;		// 提交时间
-	
+
+	public Integer getQuestionId() {
+		return questionId;
+	}
+
+	public void setQuestionId(Integer questionId) {
+		this.questionId = questionId;
+	}
+
+	public Integer getScoreSum() {
+		return scoreSum;
+	}
+
+	public void setScoreSum(Integer scoreSum) {
+		this.scoreSum = scoreSum;
+	}
+
+	public Integer getCorrectSum() {
+		return correctSum;
+	}
+
+	public void setCorrectSum(Integer correctSum) {
+		this.correctSum = correctSum;
+	}
+
 	public ExamReply() {
 		super();
 	}
@@ -53,7 +79,7 @@ public class ExamReply extends DataEntity<ExamReply> {
 		if(jsonObject!=null){
 			this.paperId = jsonObject.getString("paperId");
 			this.questionId = jsonObject.getInteger("questionId");
-			this.studentId = jsonObject.getString("paperId");
+			this.studentId = jsonObject.getString("studentId");
 			this.correct = jsonObject.getInteger("correct");
 			this.userName = jsonObject.getString("userName");
 			this.company = jsonObject.getString("company");

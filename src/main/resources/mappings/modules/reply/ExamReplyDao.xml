@@ -43,6 +43,35 @@
 			</otherwise>
 		</choose>
 	</select>
+
+	<select id="findExamList" resultType="ExamReply">
+		select * from (
+		select paper_id as paperId,student_id as studentId,user_name as userName,company,scene,sum(score) as scoreSum,sum(correct) as correctSum from exam_reply
+		group by student_id ) a
+		<where>
+			1=1
+			<if test="userName != null and userName != ''">
+				AND a.userName LIKE CONCAT('%', #{userName}, '%')
+			</if>
+			<if test="company != null and company != ''">
+				AND a.company LIKE CONCAT('%', #{company}, '%')
+			</if>
+			<if test="scene != null and scene != ''">
+				AND a.scene LIKE CONCAT('%', #{scene}, '%')
+			</if>
+			<if test="paperId != null and paperId != ''">
+				AND a.paperId =#{paperId}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				order by scoreSum desc,correctSum desc
+			</otherwise>
+		</choose>
+	</select>
 	
 	<select id="findAllList" resultType="ExamReply">
 		SELECT 

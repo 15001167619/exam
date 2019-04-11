@@ -33,6 +33,12 @@ public class ExamReplyService extends CrudService<ExamReplyDao, ExamReply> {
 	public Page<ExamReply> findPage(Page<ExamReply> page, ExamReply examReply) {
 		return super.findPage(page, examReply);
 	}
+
+	public Page<ExamReply> findExamPage(Page<ExamReply> page, ExamReply examReply) {
+		examReply.setPage(page);
+		page.setList(dao.findExamList(examReply));
+		return page;
+	}
 	
 	@Transactional(readOnly = false)
 	public void save(ExamReply examReply) {
