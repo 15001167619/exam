@@ -59,7 +59,8 @@
 						<c:when test="${examQuestion.type == 0}">
 							<label><input name="radio_${examQuestion.questionId}" type="radio" value="A" <c:if test="${examQuestion.correctAnswer == 'A'}">checked</c:if>/>A:${examQuestion.answerContent.A}</label><br/>
 							<label><input name="radio_${examQuestion.questionId}" type="radio" value="B" <c:if test="${examQuestion.correctAnswer == 'B'}">checked</c:if>/>B:${examQuestion.answerContent.B}</label><br/>
-							<label><input name="radio_${examQuestion.questionId}" type="radio" value="C" <c:if test="${examQuestion.correctAnswer == 'C'}">checked</c:if>/>C:${examQuestion.answerContent.C}</label><br/>
+							<c:if test="${examQuestion.answerContent.C != ''}">
+							<label><input name="radio_${examQuestion.questionId}" type="radio" value="C" <c:if test="${examQuestion.correctAnswer == 'C'}">checked</c:if>/>C:${examQuestion.answerContent.C}</label><br/></c:if>
 							<c:if test="${examQuestion.answerContent.D != ''}">
 							<label><input name="radio_${examQuestion.questionId}" type="radio" value="D" <c:if test="${examQuestion.correctAnswer == 'D'}">checked</c:if>/>D:${examQuestion.answerContent.D}</label><br/></c:if>
 							<br/>
