@@ -73,7 +73,6 @@
                 <input type="hidden" value="${examQuestion.type}" id="questionType_${examQuestion.questionId}"/>
                 <c:choose>
                     <c:when test="${examQuestion.type == 0}">
-
                         <label><input name="radio_${examQuestion.questionId}" type="radio" value="A" />A:${examQuestion.answerContent.A}</label><br/>
                         <label><input name="radio_${examQuestion.questionId}" type="radio" value="B" />B:${examQuestion.answerContent.B}</label><br/>
                         <c:if test="${examQuestion.answerContent.C != ''}">
@@ -86,6 +85,10 @@
                         <label><input name="checkbox_${examQuestion.questionId}" type="checkbox" value="B" />B:${examQuestion.answerContent.B}</label><br/>
                         <label><input name="checkbox_${examQuestion.questionId}" type="checkbox" value="C" />C:${examQuestion.answerContent.C}</label><br/>
                         <label><input name="checkbox_${examQuestion.questionId}" type="checkbox" value="D" />D:${examQuestion.answerContent.D}</label><br/>
+                        <c:if test="${examQuestion.answerContent.D != ''}">
+                        <label><input name="checkbox_${examQuestion.questionId}" type="checkbox" value="E" />E:${examQuestion.answerContent.E}</label><br/></c:if>
+                        <c:if test="${examQuestion.answerContent.D != ''}">
+                        <label><input name="checkbox_${examQuestion.questionId}" type="checkbox" value="F" />F:${examQuestion.answerContent.F}</label><br/></c:if>
                     </c:when>
                     <c:otherwise>
                         <label><input name="radio_${examQuestion.questionId}" type="radio" value="1" >正确</label>

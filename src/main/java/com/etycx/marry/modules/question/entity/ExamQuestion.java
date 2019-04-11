@@ -132,6 +132,8 @@ public class ExamQuestion extends DataEntity<ExamQuestion> {
 			answerContentMap.put("B",options.getString("B"));
 			answerContentMap.put("C",options.getString("C"));
 			answerContentMap.put("D",options.getString("D"));
+			answerContentMap.put("E",options.getString("E"));
+			answerContentMap.put("F",options.getString("F"));
 		}else {
 			map.put("questionType","判断题");
 		}
