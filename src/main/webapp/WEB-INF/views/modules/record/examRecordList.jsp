@@ -19,7 +19,6 @@
 <body>
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="${ctx}/record/examRecord/">答题记录列表</a></li>
-		<shiro:hasPermission name="record:examRecord:edit"><li><a href="${ctx}/record/examRecord/form">答题记录添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="examRecord" action="${ctx}/record/examRecord/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
@@ -53,15 +52,28 @@
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
+				<th>序号</th>
+				<th>考生姓名</th>
+				<th>考生单位</th>
+				<th>考生场次</th>
+				<th>考生总分</th>
+				<th>答对总数</th>
+				<th>答错总数</th>
 				<shiro:hasPermission name="record:examRecord:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>
 		<tbody>
-		<c:forEach items="${page.list}" var="examRecord">
+		<c:forEach items="${page.list}" var="examRecord" varStatus="indexs">
 			<tr>
+				<td>${indexs.index+1}</td>
+				<td>${examRecord.userName}</td>
+				<td>${examRecord.company}</td>
+				<td>${examRecord.scene}</td>
+				<td>${examRecord.scoreSum}</td>
+				<td>${examRecord.correctSum}</td>
+				<td>${examRecord.errorSum}</td>
 				<shiro:hasPermission name="record:examRecord:edit"><td>
-    				<a href="${ctx}/record/examRecord/form?id=${examRecord.id}">修改</a>
-					<a href="${ctx}/record/examRecord/delete?id=${examRecord.id}" onclick="return confirmx('确认要删除该答题记录吗？', this.href)">删除</a>
+					<a href="${ctx}/record/examRecord/examRecordForm?id=${examRecord.id}">查看详情</a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

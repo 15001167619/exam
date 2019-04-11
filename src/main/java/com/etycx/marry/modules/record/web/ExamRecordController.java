@@ -6,6 +6,8 @@ package com.etycx.marry.modules.record.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.etycx.marry.modules.question.entity.ExamQuestion;
+import com.etycx.marry.modules.question.service.ExamQuestionService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,10 @@ import com.etycx.marry.common.utils.StringUtils;
 import com.etycx.marry.modules.record.entity.ExamRecord;
 import com.etycx.marry.modules.record.service.ExamRecordService;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * 答题记录Controller
  * @author 武海升
@@ -33,6 +39,8 @@ public class ExamRecordController extends BaseController {
 
 	@Autowired
 	private ExamRecordService examRecordService;
+	@Autowired
+	private ExamQuestionService questionService;
 	
 	@ModelAttribute
 	public ExamRecord get(@RequestParam(required=false) String id) {
@@ -57,6 +65,30 @@ public class ExamRecordController extends BaseController {
 	@RequiresPermissions("record:examRecord:view")
 	@RequestMapping(value = "form")
 	public String form(ExamRecord examRecord, Model model) {
+		model.addAttribute("examRecord", examRecord);
+		return "modules/record/examRecordForm";
+	}
+
+	@RequiresPermissions("record:examRecord:view")
+	@RequestMapping(value = "examRecordForm")
+	public String examRecordForm(ExamRecord examRecord, Model model) {
+		String[] questionIdList = examRecord.getQuestionIds().split(",");
+		List<ExamQuestion> questionList =  questionService.findQuestionByIds(questionIdList);
+		List<ExamQuestion> questions = new ArrayList<>(questionIdList.length);
+
+		for (String questionId : questionIdList) {
+			for (ExamQuestion question : questionList) {
+				if(questionId.equals(question.getId())){
+					questions.add(question);
+					break;
+				}
+			}
+		}
+
+
+		model.addAttribute("questions", questions.stream()
+				.map(ExamQuestion::toMap)
+				.collect(Collectors.toList()));
 		model.addAttribute("examRecord", examRecord);
 		return "modules/record/examRecordForm";
 	}

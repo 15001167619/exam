@@ -102,5 +102,13 @@
 			#{questionId}
 		</foreach>
 	</select>
+
+	<select id="findQuestionByIds" resultType="ExamQuestion">
+		select *  from exam_question
+		where id in
+		<foreach collection="questionIds" item="questionId" open="(" close=")" separator=",">
+			${questionId}
+		</foreach>
+	</select>
 	
 </mapper>
