@@ -28,38 +28,55 @@
 <body>
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/record/examRecord/">答题记录列表</a></li>
-		<li class="active"><a href="${ctx}/record/examRecord/form?id=${examRecord.id}">答题记录<shiro:hasPermission name="record:examRecord:edit">${not empty examRecord.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="record:examRecord:edit">查看</shiro:lacksPermission></a></li>
+		<li class="active"><a href="${ctx}/record/examRecord/examRecordForm?id=${examRecord.id}">答题记录<shiro:hasPermission name="record:examRecord:edit">${not empty examRecord.id?'查看':'添加'}</shiro:hasPermission><shiro:lacksPermission name="record:examRecord:edit">查看</shiro:lacksPermission></a></li>
 	</ul><br/>
-	<form:form id="inputForm" modelAttribute="examRecord" action="${ctx}/record/examRecord/save" method="post" class="form-horizontal">
-		<form:hidden path="id"/>
-		<sys:message content="${message}"/>		
-		<div class="control-group">
-			<label class="control-label">学号：</label>
-			<div class="controls">
-				<form:input path="studentId" htmlEscape="false" maxlength="500" class="input-xlarge required"/>
-				<span class="help-inline"><font color="red">*</font> </span>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">试题Id集合：</label>
-			<div class="controls">
-				<form:input path="questionIds" htmlEscape="false" maxlength="500" class="input-xlarge required"/>
-				<span class="help-inline"><font color="red">*</font> </span>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">提交时间：</label>
-			<div class="controls">
-				<input name="createTime" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
-					value="<fmt:formatDate value="${examRecord.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
-				<span class="help-inline"><font color="red">*</font> </span>
-			</div>
-		</div>
-		<div class="form-actions">
-			<shiro:hasPermission name="record:examRecord:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>&nbsp;</shiro:hasPermission>
-			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
-		</div>
+	<form:form id="searchForm" modelAttribute="examRecord" action="${ctx}/record/examRecord/" method="post" class="breadcrumb form-search">
+		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
+		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
+		<li><label>试卷 ：${examRecord.paperId} 卷</label></li>
+		<li><label>组别 ：${examRecord.useType ==1 ? '中学组':'小学组'} </label></li>
+		<li><label>姓名 ：${examRecord.userName} </label></li>
+		<li><label>单位 ：${examRecord.company} </label></li>
+		<li><label>场次 ：${examRecord.scene} </label></li>
+		<li class="clearfix"></li>
 	</form:form>
+	<table id="contentTable" class="table table-striped table-bordered table-condensed" style="margin-top: 20px">
+		<thead>
+		<tr>
+			<th style="text-align: center;" width="50px" bgcolor="#7cb96e">题号</th>
+			<th style="text-align: center;">题目内容</th>
+		</tr>
+		</thead>
+		<tbody>
+		<c:forEach items="${questions}" var="examQuestion" varStatus="indexs">
+			<tr>
+				<td style="text-align: center;" id="index_${examQuestion.questionId}">${indexs.index+1}</td>
+				<td style="font-weight:bold;font-size: 14px"> <br/>[${examQuestion.questionType}]&nbsp;&nbsp;${examQuestion.question}<br/>
+					<br/>
+					<input type="hidden" value="${examQuestion.correctAnswer}" id="answer_${examQuestion.questionId}"/>
+					<input type="hidden" value="${examQuestion.questionId}" id="question_${examQuestion.questionId}"/>
+					<c:choose>
+						<c:when test="${examQuestion.type == 0}">
+							<label><input name="radio_${examQuestion.questionId}" type="radio" value="A" <c:if test="${examQuestion.correctAnswer == 'A'}">checked</c:if>/>A:${examQuestion.answerContent.A}</label><br/>
+							<label><input name="radio_${examQuestion.questionId}" type="radio" value="B" <c:if test="${examQuestion.correctAnswer == 'B'}">checked</c:if>/>B:${examQuestion.answerContent.B}</label><br/>
+							<label><input name="radio_${examQuestion.questionId}" type="radio" value="C" <c:if test="${examQuestion.correctAnswer == 'C'}">checked</c:if>/>C:${examQuestion.answerContent.C}</label><br/>
+							<label><input name="radio_${examQuestion.questionId}" type="radio" value="D" <c:if test="${examQuestion.correctAnswer == 'D'}">checked</c:if>/>D:${examQuestion.answerContent.D}</label><br/>
+							<br/>
+							您的选择答案：&nbsp;&nbsp;A &nbsp;&nbsp;得分情况：${examQuestion.score}&nbsp;&nbsp;分
+						</c:when>
+						<c:otherwise>
+							<label><input name="radio_${examQuestion.questionId}" type="radio" value="1" <c:if test="${examQuestion.correctAnswer == 1}">checked</c:if>/>正确</label>
+							<label><input name="radio_${examQuestion.questionId}" type="radio" value="0" <c:if test="${examQuestion.correctAnswer == 0}">checked</c:if>/>错误</label><br/>
+							<br/>
+							您的选择答案：&nbsp;&nbsp;${examQuestion.userAnswer == 0 ? '错误':'正确'} &nbsp;&nbsp;得分情况：${examQuestion.score}&nbsp;&nbsp;分
+						</c:otherwise>
+					</c:choose>
+					<br/>
+
+				</td>
+			</tr>
+		</c:forEach>
+		</tbody>
+	</table>
 </body>
 </html>
