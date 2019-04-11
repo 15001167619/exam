@@ -64,6 +64,7 @@
 			<tr>
 				<th>序号</th>
 				<th>考生姓名</th>
+				<th>所在组</th>
 				<th>考生单位</th>
 				<th>考生场次</th>
 				<th class="sort-column score_sum">考生总分</th>
@@ -77,6 +78,7 @@
 			<tr>
 				<td>${indexs.index+1}</td>
 				<td>${examRecord.userName}</td>
+				<td>${fns:getDictLabel(examRecord.useType, 'useTpye','')}</td>
 				<td>${examRecord.company}</td>
 				<td>${examRecord.scene}</td>
 				<td>${examRecord.scoreSum}</td>

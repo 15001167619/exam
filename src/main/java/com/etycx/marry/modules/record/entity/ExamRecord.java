@@ -61,7 +61,7 @@ public class ExamRecord extends DataEntity<ExamRecord> {
 		this.questionIds = questionIds;
 		this.createTime = new Date();
 	}
-
+	@ExcelField(title="所在组", align=2, sort=33, dictType="useTpye")
 	public Integer getUseType() {
 		return useType;
 	}
@@ -85,7 +85,7 @@ public class ExamRecord extends DataEntity<ExamRecord> {
 	public void setCompany(String company) {
 		this.company = company;
 	}
-	@ExcelField(title="场次", align=2, sort=25)
+	@ExcelField(title="场次", align=2, sort=30)
 	public String getScene() {
 		return scene;
 	}
@@ -109,7 +109,7 @@ public class ExamRecord extends DataEntity<ExamRecord> {
 	public void setErrorSum(long errorSum) {
 		this.errorSum = errorSum;
 	}
-	@ExcelField(title="答对题数", align=2, sort=40)
+	@ExcelField(title="答对题数", align=2, sort=45)
 	public long getCorrectSum() {
 		return correctSum;
 	}
