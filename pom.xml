@@ -74,6 +74,13 @@
 
     <!-- 依赖项定义 -->
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-scratchpad -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-scratchpad</artifactId>
+            <version>${poi.version}</version>
+        </dependency>
+
 
         <!-- poi office -->
         <dependency>

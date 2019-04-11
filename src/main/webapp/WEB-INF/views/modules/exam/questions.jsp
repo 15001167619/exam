@@ -77,6 +77,12 @@
                         <label><input name="radio_${examQuestion.questionId}" type="radio" value="C" />C:${examQuestion.answerContent.C}</label><br/>
                         <label><input name="radio_${examQuestion.questionId}" type="radio" value="D" />D:${examQuestion.answerContent.D}</label><br/>
                     </c:when>
+                    <c:when test="${examQuestion.type == 2}">
+                        <label><input name="checkbox_${examQuestion.questionId}" type="checkbox" value="A" />A:${examQuestion.answerContent.A}</label><br/>
+                        <label><input name="checkbox_${examQuestion.questionId}" type="checkbox" value="B" />B:${examQuestion.answerContent.B}</label><br/>
+                        <label><input name="checkbox_${examQuestion.questionId}" type="checkbox" value="C" />C:${examQuestion.answerContent.C}</label><br/>
+                        <label><input name="checkbox_${examQuestion.questionId}" type="checkbox" value="D" />D:${examQuestion.answerContent.D}</label><br/>
+                    </c:when>
                     <c:otherwise>
                         <label><input name="radio_${examQuestion.questionId}" type="radio" value="1" >正确</label>
                         <label><input name="radio_${examQuestion.questionId}" type="radio" value="0" />错误</label><br/>
@@ -128,6 +134,8 @@
                 }
                 addExamReply(createUserExamReply(questionId,userAnswer,correct));
             }
+
+            return;
             //提交试题
             var userExamReplyText = JSON.stringify(userExamReplyArray);
             var useType = $("#useType").val();

@@ -111,15 +111,17 @@ public class ExamController {
         Collections.shuffle(ids);
         Collections.shuffle(ids);
         Collections.shuffle(ids);
-        List<ExamQuestion> examQuestionList = examQuestionService.findExamQuestionByIds(ids);
-        List<Map<String, Object>> resultMap = examQuestionList
-                .stream()
-                .map(ExamQuestion::toMap)
-                .collect(Collectors.toList());
-        map.put("questionIds",ids.stream()
-                .map(questionId -> questionId + "")
-                .collect(Collectors.joining(",")));
-        map.put("questionList",resultMap);
+        if(ids.size()>0){
+            List<ExamQuestion> examQuestionList = examQuestionService.findExamQuestionByIds(ids);
+            List<Map<String, Object>> resultMap = examQuestionList
+                    .stream()
+                    .map(ExamQuestion::toMap)
+                    .collect(Collectors.toList());
+            map.put("questionIds",ids.stream()
+                    .map(questionId -> questionId + "")
+                    .collect(Collectors.joining(",")));
+            map.put("questionList",resultMap);
+        }
         return map;
     }
 

@@ -126,7 +126,7 @@ public class ExamQuestion extends DataEntity<ExamQuestion> {
 		map.put("question",examQuestion.getQuestion());
 		JSONObject options = JSONObject.parseObject(examQuestion.getAnswerContent());
 		Map<String, Object> answerContentMap = new HashMap<>(7);
-		if(examQuestion.getType() == 0){
+		if(examQuestion.getType() == 0 || examQuestion.getType() == 2){
 			map.put("questionType","选择题");
 			answerContentMap.put("A",options.getString("A"));
 			answerContentMap.put("B",options.getString("B"));
