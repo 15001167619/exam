@@ -74,6 +74,23 @@
 
     <!-- 依赖项定义 -->
     <dependencies>
+
+        <!-- poi office -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>${poi.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>${poi.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml-schemas</artifactId>
+            <version>${poi.version}</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/commons-configuration/commons-configuration -->
         <dependency>
             <groupId>commons-configuration</groupId>

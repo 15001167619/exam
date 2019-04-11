@@ -3,6 +3,7 @@
  */
 package com.etycx.marry.modules.record.entity;
 
+import com.etycx.marry.common.utils.excel.annotation.ExcelField;
 import org.hibernate.validator.constraints.Length;
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -68,7 +69,7 @@ public class ExamRecord extends DataEntity<ExamRecord> {
 	public void setUseType(Integer useType) {
 		this.useType = useType;
 	}
-
+	@ExcelField(title="姓名", align=2, sort=20)
 	public String getUserName() {
 		return userName;
 	}
@@ -76,7 +77,7 @@ public class ExamRecord extends DataEntity<ExamRecord> {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-
+	@ExcelField(title="单位", align=2, sort=25)
 	public String getCompany() {
 		return company;
 	}
@@ -84,7 +85,7 @@ public class ExamRecord extends DataEntity<ExamRecord> {
 	public void setCompany(String company) {
 		this.company = company;
 	}
-
+	@ExcelField(title="场次", align=2, sort=25)
 	public String getScene() {
 		return scene;
 	}
@@ -92,7 +93,7 @@ public class ExamRecord extends DataEntity<ExamRecord> {
 	public void setScene(String scene) {
 		this.scene = scene;
 	}
-
+	@ExcelField(title="总分", align=2, sort=35)
 	public long getScoreSum() {
 		return scoreSum;
 	}
@@ -100,7 +101,7 @@ public class ExamRecord extends DataEntity<ExamRecord> {
 	public void setScoreSum(long scoreSum) {
 		this.scoreSum = scoreSum;
 	}
-
+	@ExcelField(title="答错题数", align=2, sort=40)
 	public long getErrorSum() {
 		return errorSum;
 	}
@@ -108,7 +109,7 @@ public class ExamRecord extends DataEntity<ExamRecord> {
 	public void setErrorSum(long errorSum) {
 		this.errorSum = errorSum;
 	}
-
+	@ExcelField(title="答对题数", align=2, sort=40)
 	public long getCorrectSum() {
 		return correctSum;
 	}
@@ -118,6 +119,7 @@ public class ExamRecord extends DataEntity<ExamRecord> {
 	}
 
 	@Length(min=1, max=500, message="学号长度必须介于 1 和 500 之间")
+	@ExcelField(title="考号", align=2, sort=15)
 	public String getStudentId() {
 		return studentId;
 	}

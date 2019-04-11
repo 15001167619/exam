@@ -6,14 +6,18 @@ package com.etycx.marry.modules.record.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.etycx.marry.common.excel.ExportExcel;
+import com.etycx.marry.common.utils.DateUtils;
 import com.etycx.marry.modules.question.entity.ExamQuestion;
 import com.etycx.marry.modules.question.service.ExamQuestionService;
+import com.etycx.marry.modules.sys.entity.User;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -54,6 +58,21 @@ public class ExamRecordController extends BaseController {
 		return entity;
 	}
 	
+	@RequiresPermissions("record:examRecord:view")
+	@RequestMapping(value = "export", method= RequestMethod.POST)
+	public String exportFile(ExamRecord examRecord, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
+		try {
+			String fileName = "考生数据"+ DateUtils.getDate("yyyyMMddHHmmss")+".xlsx";
+			Page<ExamRecord> page = examRecordService.findPage(new Page<>(request, response, -1), examRecord);
+			new ExportExcel("考生数据", ExamRecord.class).setDataList(page.getList()).write(response, fileName).dispose();
+			return null;
+		} catch (Exception e) {
+			addMessage(redirectAttributes, "导出数据失败！失败信息："+e.getMessage());
+		}
+		return "redirect:" + adminPath + "/record/examRecord/list?repage";
+	}
+
+
 	@RequiresPermissions("record:examRecord:view")
 	@RequestMapping(value = {"list", ""})
 	public String list(ExamRecord examRecord, HttpServletRequest request, HttpServletResponse response, Model model) {
