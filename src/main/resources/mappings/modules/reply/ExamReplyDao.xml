@@ -46,7 +46,7 @@
 
 	<select id="findExamList" resultType="ExamReply">
 		select * from (
-		select paper_id as paperId,student_id as studentId,user_name as userName,company,scene,sum(score) as scoreSum,sum(correct) as correctSum from exam_reply
+		select use_type as useType,paper_id as paperId,student_id as studentId,user_name as userName,company,scene,sum(score) as scoreSum,sum(correct) as correctSum from exam_reply
 		group by student_id ) a
 		<where>
 			1=1
@@ -61,6 +61,9 @@
 			</if>
 			<if test="paperId != null and paperId != ''">
 				AND a.paperId =#{paperId}
+			</if>
+			<if test="useType != null and useType != ''">
+				AND a.useType =#{useType}
 			</if>
 		</where>
 		<choose>
@@ -138,11 +141,12 @@
 
 
 	<insert id="insertExamReply" parameterType="java.util.List">
-		insert into exam_reply (question_id,paper_id,student_id,user_name,company,scene,user_answer,score,correct,create_time)
+		insert into exam_reply (question_id,use_type,paper_id,student_id,user_name,company,scene,user_answer,score,correct,create_time)
 		values
 		<foreach collection="list" item="examReply" index="index" separator=",">
 			(
 			#{examReply.questionId},
+			#{examReply.useType},
 			#{examReply.paperId},
 			#{examReply.studentId},
 			#{examReply.userName},

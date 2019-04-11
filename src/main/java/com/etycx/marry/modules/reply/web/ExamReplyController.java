@@ -49,7 +49,7 @@ public class ExamReplyController extends BaseController {
 	@RequiresPermissions("reply:examReply:view")
 	@RequestMapping(value = {"list", ""})
 	public String list(ExamReply examReply, HttpServletRequest request, HttpServletResponse response, Model model) {
-		Page<ExamReply> page = examReplyService.findPage(new Page<ExamReply>(request, response), examReply); 
+		Page<ExamReply> page = examReplyService.findExamPage(new Page<ExamReply>(request, response), examReply);
 		model.addAttribute("page", page);
 		return "modules/reply/examReplyList";
 	}

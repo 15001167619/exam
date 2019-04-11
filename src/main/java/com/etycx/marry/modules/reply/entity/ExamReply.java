@@ -20,6 +20,7 @@ public class ExamReply extends DataEntity<ExamReply> {
 	
 	private static final long serialVersionUID = 1L;
 	private Integer questionId;		// 试题Id
+	private Integer useType;		// 试题Id
 	private String paperId;		// 试卷 Id
 	private String studentId;		// 学号
 	private String userName;		// 姓名
@@ -31,6 +32,14 @@ public class ExamReply extends DataEntity<ExamReply> {
 	private Integer correctSum;		// 分数
 	private Integer correct;		// 0错误1为正确
 	private Date createTime;		// 提交时间
+
+	public Integer getUseType() {
+		return useType;
+	}
+
+	public void setUseType(Integer useType) {
+		this.useType = useType;
+	}
 
 	public Integer getQuestionId() {
 		return questionId;
@@ -79,6 +88,7 @@ public class ExamReply extends DataEntity<ExamReply> {
 		if(jsonObject!=null){
 			this.paperId = jsonObject.getString("paperId");
 			this.questionId = jsonObject.getInteger("questionId");
+			this.useType = jsonObject.getInteger("useType");
 			this.studentId = jsonObject.getString("studentId");
 			this.correct = jsonObject.getInteger("correct");
 			this.userName = jsonObject.getString("userName");

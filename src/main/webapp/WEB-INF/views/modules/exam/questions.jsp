@@ -35,7 +35,6 @@
                     <a class="dropdown-toggle" data-toggle="dropdown"  title="个人信息">您好, ${userName}&nbsp; 您的单位:${company}&nbsp;您的场次:${scene}&nbsp;您的考号:${studentId}&nbsp;</a>
                 </li>
                 <li><a href="${logout}" title="退出考试">退出考试</a></li>
-                <li><a href="#" title="退出考试" onclick="js_delete()">ddd</a></li>
                 <li>&nbsp;</li>
             </ul>
         </div>
@@ -52,6 +51,7 @@
 <input type="hidden" value="${scene}" id="scene"/>
 <input type="hidden" value="${studentId}" id="studentId"/>
 <input type="hidden" value="${examName}" id="paperId"/>
+<input type="hidden" value="${useType}" id="useType"/>
 
 
 <table id="contentTable" class="table table-striped table-bordered table-condensed" style="margin-top: 20px">
@@ -179,6 +179,7 @@
         userExamReply.userAnswer = userAnswer;
         userExamReply.correct = correct;
         userExamReply.studentId = $("#studentId").val();
+        userExamReply.useType = $("#useType").val();
         userExamReply.paperId = $("#paperId").val();
         userExamReply.userName = $("#userName").val();
         userExamReply.company = $("#company").val();

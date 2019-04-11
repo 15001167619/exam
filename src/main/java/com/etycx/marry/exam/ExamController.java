@@ -55,6 +55,7 @@ public class ExamController {
         model.addAttribute("exam", "2019年房山区教育系统团队课比赛理论考试("+groupName+examName+"卷）");
         model.addAttribute("examName", examName);
         model.addAttribute("logout", "logoutFirst");
+        model.addAttribute("useType", useType);
         return "modules/exam/questions";
     }
 
