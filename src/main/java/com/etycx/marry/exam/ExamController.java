@@ -48,13 +48,15 @@ public class ExamController {
         setUserInfo(userName,studentId,company,scene,model);
         String examName = getExamName();
         String groupName = "中学组";
+        String logout = "logoutFirst";
         if(useType == 2){
             groupName = "小学组";
+            logout = "logoutSecond";
         }
         model.addAttribute("examQuestions", getExamQuestions(examName, useType));
         model.addAttribute("exam", "2019年房山区教育系统团队课比赛理论考试("+groupName+examName+"卷）");
         model.addAttribute("examName", examName);
-        model.addAttribute("logout", "logoutFirst");
+        model.addAttribute("logout", logout);
         model.addAttribute("useType", useType);
         return "modules/exam/questions";
     }

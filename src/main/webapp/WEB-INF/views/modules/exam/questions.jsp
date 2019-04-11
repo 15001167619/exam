@@ -70,6 +70,7 @@
                 <br/>
                 <input type="hidden" value="${examQuestion.correctAnswer}" id="answer_${examQuestion.questionId}"/>
                 <input type="hidden" value="${examQuestion.questionId}" id="question_${examQuestion.questionId}"/>
+                <input type="hidden" value="${examQuestion.type}" id="questionType_${examQuestion.questionId}"/>
                 <c:choose>
                     <c:when test="${examQuestion.type == 0}">
                         <label><input name="radio_${examQuestion.questionId}" type="radio" value="A" />A:${examQuestion.answerContent.A}</label><br/>
@@ -114,28 +115,57 @@
         if(questionIds!=''){
             var questionIdArrays = questionIds.split(',');
             for ( var i = 0; i <questionIdArrays.length; i++){
-                //校验是否有未完成的试题
-                var radioName = 'radio_'+questionIdArrays[i];
-                var select_Id = $('input[name="'+radioName+'"]:checked').val();
-                if(typeof(select_Id) =="undefined"){
-                    swal("您有未完成的试题");
-                    return;
+                var questionType = $("#questionType_"+questionIdArrays[i]).val();
+                if(questionType == 2){
+                    var chk_userAnswer =[];
+                    var checkboxName = 'checkbox_'+questionIdArrays[i];
+                    $('input[name="'+checkboxName+'"]:checked').each(function(){
+                        chk_userAnswer.push($(this).val());
+                    });
+                    if(chk_userAnswer.length == 0){
+                        swal("您有未完成的试题");
+                        return;
+                    }
+                }else {
+                    //校验是否有未完成的试题
+                    var radioName = 'radio_'+questionIdArrays[i];
+                    var select_Id = $('input[name="'+radioName+'"]:checked').val();
+                    if(typeof(select_Id) =="undefined"){
+                        swal("您有未完成的试题");
+                        return;
+                    }
                 }
+
             }
             for ( var j = 0; j <questionIdArrays.length; j++){
                 // 0错误1为正确
                 var correct = 0;
-                var radioName = 'radio_'+questionIdArrays[j];
-                var userAnswer = $('input[name="'+radioName+'"]:checked').val();
-                var answerId = $("#answer_"+questionIdArrays[j]).val();
                 var questionId = $("#question_"+questionIdArrays[j]).val();
-                if(userAnswer == answerId){
-                    correct = 1;
+                var userAnswer;
+                var questionType = $("#questionType_"+questionIdArrays[j]).val();
+                if(questionType == 2){
+                    //用户选择
+                    var chk_userAnswer =[];
+                    var checkboxName = 'checkbox_'+questionIdArrays[j];
+                    $('input[name="'+checkboxName+'"]:checked').each(function(){
+                        chk_userAnswer.push($(this).val());
+                    });
+                    var question_value = $("#answer_"+questionIdArrays[j]).val().split(',');
+                    if(equar(chk_userAnswer,question_value)){
+                        correct = 1;
+                    }
+                    userAnswer = chk_userAnswer.join(',');
+                }else {
+                    var radioName = 'radio_'+questionIdArrays[j];
+                    userAnswer = $('input[name="'+radioName+'"]:checked').val();
+                    var answerId = $("#answer_"+questionIdArrays[j]).val();
+                    if(userAnswer == answerId){
+                        correct = 1;
+                    }
                 }
                 addExamReply(createUserExamReply(questionId,userAnswer,correct));
             }
 
-            return;
             //提交试题
             var userExamReplyText = JSON.stringify(userExamReplyArray);
             var useType = $("#useType").val();
@@ -182,6 +212,21 @@
 
         }
 
+    }
+
+    function equar(a, b) {
+        // 判断数组的长度
+        if (a.length !== b.length) {
+            return false
+        } else {
+            // 循环遍历数组的值进行比较
+            for (let i = 0; i < a.length; i++) {
+                if (a[i] !== b[i]) {
+                    return false
+                }
+            }
+            return true;
+        }
     }
 
     var userExamReplyArray = new Array();
