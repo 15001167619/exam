@@ -26,6 +26,11 @@ public class MarryTest {
             XWPFWordExtractor extractor = new XWPFWordExtractor(xdoc);
             String doc1 = extractor.getText();
             System.out.println(doc1);
+
+
+
+
+
             System.out.println(getLineNumberByIo(doc1));
             fis.close();
         } catch (Exception e) {

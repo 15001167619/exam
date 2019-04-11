@@ -60,9 +60,10 @@
 							<label><input name="radio_${examQuestion.questionId}" type="radio" value="A" <c:if test="${examQuestion.correctAnswer == 'A'}">checked</c:if>/>A:${examQuestion.answerContent.A}</label><br/>
 							<label><input name="radio_${examQuestion.questionId}" type="radio" value="B" <c:if test="${examQuestion.correctAnswer == 'B'}">checked</c:if>/>B:${examQuestion.answerContent.B}</label><br/>
 							<label><input name="radio_${examQuestion.questionId}" type="radio" value="C" <c:if test="${examQuestion.correctAnswer == 'C'}">checked</c:if>/>C:${examQuestion.answerContent.C}</label><br/>
-							<label><input name="radio_${examQuestion.questionId}" type="radio" value="D" <c:if test="${examQuestion.correctAnswer == 'D'}">checked</c:if>/>D:${examQuestion.answerContent.D}</label><br/>
+							<c:if test="${examQuestion.answerContent.D != ''}">
+							<label><input name="radio_${examQuestion.questionId}" type="radio" value="D" <c:if test="${examQuestion.correctAnswer == 'D'}">checked</c:if>/>D:${examQuestion.answerContent.D}</label><br/></c:if>
 							<br/>
-							您的选择答案：&nbsp;&nbsp;A &nbsp;&nbsp;得分情况：${examQuestion.score}&nbsp;&nbsp;分
+							您的选择答案：&nbsp;&nbsp;${examQuestion.userAnswer} &nbsp;&nbsp;得分情况：${examQuestion.score}&nbsp;&nbsp;分
 						</c:when>
 						<c:when test="${examQuestion.type == 2}">
 							<label><input name="checkbox_${examQuestion.questionId}" type="checkbox" value="A" <c:if test="${fn:contains(examQuestion.correctAnswer,'A')==true}">checked</c:if>/>A:${examQuestion.answerContent.A}</label><br/>
