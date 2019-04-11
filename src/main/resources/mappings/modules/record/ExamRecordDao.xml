@@ -34,13 +34,29 @@
 		FROM exam_record a
 		<include refid="examRecordJoins"/>
 		<where>
-			
+			1=1
+			<if test="userName != null and userName != ''">
+				AND a.user_name LIKE CONCAT('%', #{userName}, '%')
+			</if>
+			<if test="company != null and company != ''">
+				AND a.company LIKE CONCAT('%', #{company}, '%')
+			</if>
+			<if test="scene != null and scene != ''">
+				AND a.scene LIKE CONCAT('%', #{scene}, '%')
+			</if>
+			<if test="paperId != null and paperId != ''">
+				AND a.paper_id =#{paperId}
+			</if>
+			<if test="useType != null and useType != ''">
+				AND a.use_type =#{useType}
+			</if>
 		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
+				order by score_sum desc,correct_sum desc,error_sum desc
 			</otherwise>
 		</choose>
 	</select>

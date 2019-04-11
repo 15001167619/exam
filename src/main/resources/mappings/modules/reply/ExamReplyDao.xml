@@ -48,7 +48,7 @@
 		FROM exam_reply a
 		<include refid="examReplyJoins"/>
 		<where>
-			
+
 		</where>		
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">

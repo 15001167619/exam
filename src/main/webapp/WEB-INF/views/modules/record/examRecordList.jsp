@@ -9,10 +9,10 @@
 			
 		});
 		function page(n,s){
-			$("#pageNo").val(n);
-			$("#pageSize").val(s);
+			if(n) $("#pageNo").val(n);
+			if(s) $("#pageSize").val(s);
+			$("#searchForm").attr("action","${ctx}/record/examRecord/list");
 			$("#searchForm").submit();
-        	return false;
         }
 	</script>
 </head>
@@ -20,9 +20,10 @@
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="${ctx}/record/examRecord/">答题记录列表</a></li>
 	</ul>
-	<form:form id="searchForm" modelAttribute="examRecord" action="${ctx}/record/examRecord/" method="post" class="breadcrumb form-search">
+	<form:form id="searchForm" modelAttribute="examRecord" action="${ctx}/record/examRecord/list" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
+		<sys:tableSort id="orderBy" name="orderBy" value="${page.orderBy}" callback="page();"/>
 		<li><label>试卷</label>
 
 			<form:select path="paperId" class="input-medium">
@@ -56,9 +57,9 @@
 				<th>考生姓名</th>
 				<th>考生单位</th>
 				<th>考生场次</th>
-				<th>考生总分</th>
-				<th>答对总数</th>
-				<th>答错总数</th>
+				<th class="sort-column score_sum">考生总分</th>
+				<th class="sort-column correct_sum">答对总数</th>
+				<th class="sort-column error_sum">答错总数</th>
 				<shiro:hasPermission name="record:examRecord:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>
