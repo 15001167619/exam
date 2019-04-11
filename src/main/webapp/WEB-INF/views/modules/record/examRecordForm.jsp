@@ -64,6 +64,14 @@
 							<br/>
 							您的选择答案：&nbsp;&nbsp;A &nbsp;&nbsp;得分情况：${examQuestion.score}&nbsp;&nbsp;分
 						</c:when>
+						<c:when test="${examQuestion.type == 2}">
+							<label><input name="checkbox_${examQuestion.questionId}" type="checkbox" value="A" <c:if test="${fn:contains(examQuestion.correctAnswer,'A')==true}">checked</c:if>/>A:${examQuestion.answerContent.A}</label><br/>
+							<label><input name="checkbox_${examQuestion.questionId}" type="checkbox" value="B" <c:if test="${fn:contains(examQuestion.correctAnswer,'B')==true}">checked</c:if>/>B:${examQuestion.answerContent.B}</label><br/>
+							<label><input name="checkbox_${examQuestion.questionId}" type="checkbox" value="C" <c:if test="${fn:contains(examQuestion.correctAnswer,'C')==true}">checked</c:if>/>C:${examQuestion.answerContent.C}</label><br/>
+							<label><input name="checkbox_${examQuestion.questionId}" type="checkbox" value="D" <c:if test="${fn:contains(examQuestion.correctAnswer,'D')==true}">checked</c:if>/>D:${examQuestion.answerContent.D}</label><br/>
+							<br/>
+							您的选择答案：&nbsp;&nbsp;${examQuestion.userAnswer} &nbsp;&nbsp;得分情况：${examQuestion.score}&nbsp;&nbsp;分
+						</c:when>
 						<c:otherwise>
 							<label><input name="radio_${examQuestion.questionId}" type="radio" value="1" <c:if test="${examQuestion.correctAnswer == 1}">checked</c:if>/>正确</label>
 							<label><input name="radio_${examQuestion.questionId}" type="radio" value="0" <c:if test="${examQuestion.correctAnswer == 0}">checked</c:if>/>错误</label><br/>
