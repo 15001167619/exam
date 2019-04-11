@@ -71,9 +71,9 @@
 							<label><input name="checkbox_${examQuestion.questionId}" type="checkbox" value="B" <c:if test="${fn:contains(examQuestion.correctAnswer,'B')==true}">checked</c:if>/>B:${examQuestion.answerContent.B}</label><br/>
 							<label><input name="checkbox_${examQuestion.questionId}" type="checkbox" value="C" <c:if test="${fn:contains(examQuestion.correctAnswer,'C')==true}">checked</c:if>/>C:${examQuestion.answerContent.C}</label><br/>
 							<label><input name="checkbox_${examQuestion.questionId}" type="checkbox" value="D" <c:if test="${fn:contains(examQuestion.correctAnswer,'D')==true}">checked</c:if>/>D:${examQuestion.answerContent.D}</label><br/>
-							<c:if test="${examQuestion.answerContent.E != ''}">
+							<c:if test="${not empty examQuestion.answerContent.E}">
 							<label><input name="checkbox_${examQuestion.questionId}" type="checkbox" value="E" <c:if test="${fn:contains(examQuestion.correctAnswer,'E')==true}">checked</c:if>/>E:${examQuestion.answerContent.E}</label><br/></c:if>
-							<c:if test="${examQuestion.answerContent.F != ''}">
+							<c:if test="${not empty examQuestion.answerContent.F}">
 							<label><input name="checkbox_${examQuestion.questionId}" type="checkbox" value="F" <c:if test="${fn:contains(examQuestion.correctAnswer,'F')==true}">checked</c:if>/>F:${examQuestion.answerContent.F}</label><br/></c:if>
 							<br/>
 							您的选择答案：&nbsp;&nbsp;${examQuestion.userAnswer} &nbsp;&nbsp;得分情况：${examQuestion.score}&nbsp;&nbsp;分

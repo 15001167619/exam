@@ -85,9 +85,9 @@
                         <label><input name="checkbox_${examQuestion.questionId}" type="checkbox" value="B" />B:${examQuestion.answerContent.B}</label><br/>
                         <label><input name="checkbox_${examQuestion.questionId}" type="checkbox" value="C" />C:${examQuestion.answerContent.C}</label><br/>
                         <label><input name="checkbox_${examQuestion.questionId}" type="checkbox" value="D" />D:${examQuestion.answerContent.D}</label><br/>
-                        <c:if test="${examQuestion.answerContent.E != ''}">
+                        <c:if test="${not empty examQuestion.answerContent.E}">
                         <label><input name="checkbox_${examQuestion.questionId}" type="checkbox" value="E" />E:${examQuestion.answerContent.E}</label><br/></c:if>
-                        <c:if test="${examQuestion.answerContent.F != ''}">
+                        <c:if test="${not empty examQuestion.answerContent.F}">
                         <label><input name="checkbox_${examQuestion.questionId}" type="checkbox" value="F" />F:${examQuestion.answerContent.F}</label><br/></c:if>
                     </c:when>
                     <c:otherwise>
