@@ -23,5 +23,5 @@ public interface ExamQuestionDao extends CrudDao<ExamQuestion> {
 
     List<ExamQuestion> findExamQuestionByIds(@Param("questionIds")List<Integer> questionIds);
 
-    List<ExamQuestion> findQuestionByIds(@Param("questionIds")String[] questionIds);
+    List<ExamQuestion> findQuestionByIds(@Param("questionIds")String[] questionIds,@Param("studentId")String studentId);
 }

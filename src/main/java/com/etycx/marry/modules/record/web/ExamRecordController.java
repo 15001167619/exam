@@ -73,9 +73,8 @@ public class ExamRecordController extends BaseController {
 	@RequestMapping(value = "examRecordForm")
 	public String examRecordForm(ExamRecord examRecord, Model model) {
 		String[] questionIdList = examRecord.getQuestionIds().split(",");
-		List<ExamQuestion> questionList =  questionService.findQuestionByIds(questionIdList);
+		List<ExamQuestion> questionList =  questionService.findQuestionByIds(questionIdList,examRecord.getStudentId());
 		List<ExamQuestion> questions = new ArrayList<>(questionIdList.length);
-
 		for (String questionId : questionIdList) {
 			for (ExamQuestion question : questionList) {
 				if(questionId.equals(question.getId())){
@@ -84,8 +83,6 @@ public class ExamRecordController extends BaseController {
 				}
 			}
 		}
-
-
 		model.addAttribute("questions", questions.stream()
 				.map(ExamQuestion::toMap)
 				.collect(Collectors.toList()));

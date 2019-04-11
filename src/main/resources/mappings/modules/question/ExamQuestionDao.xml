@@ -104,8 +104,11 @@
 	</select>
 
 	<select id="findQuestionByIds" resultType="ExamQuestion">
-		select *  from exam_question
-		where id in
+		select * from (
+		select eq.*,er.student_id,er.user_answer as userAnswer ,er.correct,er.score from exam_question eq
+		left join exam_reply er on eq.id = er.question_id
+		and student_id = #{studentId})a
+		where a.id in
 		<foreach collection="questionIds" item="questionId" open="(" close=")" separator=",">
 			${questionId}
 		</foreach>

@@ -53,7 +53,7 @@ public class ExamQuestionService extends CrudService<ExamQuestionDao, ExamQuesti
 		return dao.findExamQuestionByIds(ids);
 	}
 
-	public List<ExamQuestion> findQuestionByIds(String[] questionIdList) {
-		return dao.findQuestionByIds(questionIdList);
+	public List<ExamQuestion> findQuestionByIds(String[] questionIdList,String studentId) {
+		return dao.findQuestionByIds(questionIdList,studentId);
 	}
 }

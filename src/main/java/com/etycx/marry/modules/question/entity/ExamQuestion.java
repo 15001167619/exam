@@ -25,10 +25,37 @@ public class ExamQuestion extends DataEntity<ExamQuestion> {
 	private String paperType;		// 试卷类型 ABCDE
 	private Integer useType;		// 使用群体 1 2
 	private Integer type;		// 试题类型 0 选择题 1 判断题
+	private Integer correct;		// 试题类型 0 选择题 1 判断题
+	private Integer score;		// 试题类型 0 选择题 1 判断题
 	private String question;		// 试题内容
 	private String answerContent;		// {
+	private String userAnswer;		// {
 	private Date createTime;		// 创建时间
-	
+
+	public Integer getCorrect() {
+		return correct;
+	}
+
+	public void setCorrect(Integer correct) {
+		this.correct = correct;
+	}
+
+	public Integer getScore() {
+		return score;
+	}
+
+	public void setScore(Integer score) {
+		this.score = score;
+	}
+
+	public String getUserAnswer() {
+		return userAnswer;
+	}
+
+	public void setUserAnswer(String userAnswer) {
+		this.userAnswer = userAnswer;
+	}
+
 	public ExamQuestion() {
 		super();
 	}
@@ -93,7 +120,7 @@ public class ExamQuestion extends DataEntity<ExamQuestion> {
 	}
 
 	public static Map<String,Object> toMap(ExamQuestion examQuestion){
-		Map<String, Object> map = new HashMap<>(5);
+		Map<String, Object> map = new HashMap<>(9);
 		map.put("questionId",examQuestion.getId());
 		map.put("type",examQuestion.getType());
 		map.put("question",examQuestion.getQuestion());
@@ -110,6 +137,9 @@ public class ExamQuestion extends DataEntity<ExamQuestion> {
 		}
 		map.put("correctAnswer", options.getString("answer"));
 		map.put("answerContent", answerContentMap);
+		map.put("score", examQuestion.getScore());
+		map.put("correct", examQuestion.getCorrect());
+		map.put("userAnswer", examQuestion.getUserAnswer());
 		return map;
 	}
 	
