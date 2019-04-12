@@ -28,6 +28,7 @@
 <style type="text/css">
     .navbar-inner {
         background: linear-gradient(to bottom,#c71c22,#c26e1b)!important;
+        border: 1px solid #d51919!important;;
     }
     .navbar .nav>li>a:focus, .navbar .nav>li>a:link {
         background: linear-gradient(to bottom,#c71c22,#c26e1b)!important;
