@@ -66,7 +66,7 @@
 				<th>考生姓名</th>
 				<th>所在组</th>
 				<th>考生单位</th>
-				<th>考生场次</th>
+				<th>类型</th>
 				<th class="sort-column score_sum">考生总分</th>
 				<th class="sort-column correct_sum">答对总数</th>
 				<th class="sort-column error_sum">答错总数</th>

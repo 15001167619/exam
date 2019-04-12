@@ -99,16 +99,18 @@
                     <c:when test="${examQuestion.type == 0}">
                         <label><input name="radio_${examQuestion.questionId}" type="radio" value="A" />A:${examQuestion.answerContent.A}</label><br/>
                         <label><input name="radio_${examQuestion.questionId}" type="radio" value="B" />B:${examQuestion.answerContent.B}</label><br/>
-                        <c:if test="${examQuestion.answerContent.C != ''}">
+                        <c:if test="${not empty examQuestion.answerContent.C || examQuestion.answerContent.C != ''}">
                         <label><input name="radio_${examQuestion.questionId}" type="radio" value="C" />C:${examQuestion.answerContent.C}</label><br/></c:if>
-                        <c:if test="${examQuestion.answerContent.D != ''}">
+                        <c:if test="${not empty examQuestion.answerContent.D || examQuestion.answerContent.D != ''}">
                         <label><input name="radio_${examQuestion.questionId}" type="radio" value="D" />D:${examQuestion.answerContent.D}</label><br/></c:if>
                     </c:when>
                     <c:when test="${examQuestion.type == 2}">
                         <label><input name="checkbox_${examQuestion.questionId}" type="checkbox" value="A" />A:${examQuestion.answerContent.A}</label><br/>
                         <label><input name="checkbox_${examQuestion.questionId}" type="checkbox" value="B" />B:${examQuestion.answerContent.B}</label><br/>
-                        <label><input name="checkbox_${examQuestion.questionId}" type="checkbox" value="C" />C:${examQuestion.answerContent.C}</label><br/>
-                        <label><input name="checkbox_${examQuestion.questionId}" type="checkbox" value="D" />D:${examQuestion.answerContent.D}</label><br/>
+                        <c:if test="${not empty examQuestion.answerContent.C}">
+                        <label><input name="checkbox_${examQuestion.questionId}" type="checkbox" value="C" />C:${examQuestion.answerContent.C}</label><br/></c:if>
+                        <c:if test="${not empty examQuestion.answerContent.D}">
+                        <label><input name="checkbox_${examQuestion.questionId}" type="checkbox" value="D" />D:${examQuestion.answerContent.D}</label><br/></c:if>
                         <c:if test="${not empty examQuestion.answerContent.E}">
                         <label><input name="checkbox_${examQuestion.questionId}" type="checkbox" value="E" />E:${examQuestion.answerContent.E}</label><br/></c:if>
                         <c:if test="${not empty examQuestion.answerContent.F}">
@@ -224,9 +226,9 @@
                             animation : "slide-from-top"
                         }, function(inputValue) {
                             if(inputValue){
-                                window.location.href = "<c:url value='${logout}'/>"
+                                window.location.href = "<c:url value='examination'/>"
                             }else {
-                                window.location.href = "<c:url value='${logout}'/>"
+                                window.location.href = "<c:url value='examination'/>"
                             }
                         })
                     }

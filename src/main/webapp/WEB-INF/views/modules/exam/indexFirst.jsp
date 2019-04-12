@@ -125,6 +125,11 @@
         $('#company').val(c);
         $('#studentId').val(num);
         $('#useType').val(r);
+        var scene = '共青团';
+        if(r == 2){
+            scene = '少先队';
+        }
+        $('#scene').val(scene);
         document.loginIndexFirst.action = "<c:url value='questions'/>";
         document.loginIndexFirst.submit();
     });
