@@ -1,0 +1,266 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+h1, h2, h3, h4, h5, h6, img, ul, li, a, span, p, i, strong, b, em, form, input, label, div, body, html,
+blockquote, dd, dl, figure, pre{
+    margin: 0;
+    padding: 0;
+}
+body{
+    color: #333;
+    font-size: 14px;
+    overflow-x: hidden;
+    background: #fafafa;
+    font-family: Microsoft Yahei,Arial;
+}
+a,a:hover,a:active,a:focus{
+    background-color: #c21b1d;
+    text-decoration: none;
+    color: #fffefe;
+    outline: none;
+}
+/**
+ * 去除IE10中活动链接的灰色背景.
+ */
+
+/**
+ * 去除IE6-10中a链接包裹图片蓝色边框.
+ */
+ul{
+    padding-inline-start: 0px !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+
+    font-weight: normal;
+}
+/**
+ * 去除列表边距及符号.
+ */
+ul,
+ol,
+dl,
+li,
+dt,
+dd {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+img {
+    border: 0;
+}
+/**
+ * 删除表格单元格之间的间距。
+ */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+td,
+th {
+    padding: 0;
+}
+/**
+ * 删除表格单元格之间的间距。
+ * 字体相关属性改为继承
+ */
+button,
+input,
+select,
+textarea {
+    color: inherit;
+    font: inherit;
+    margin: 0;
+}
+/**
+ * IE 8/9/10/11中，去除默认垂直滚动条属性
+ */
+textarea {
+    overflow: auto;
+}
+/**
+ * HTML5新模块元素在IE8、9版本浏览器中没有被定义默认样式。为解决该问题，给下列元素添加“block”显示属性。
+ */
+article,
+aside,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section {
+    display: block;
+}
+/**
+ * IE 8/9/10/11/12 兼容template标签
+ */
+template {
+    display: none;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
+}
+input[type="submit"] {
+    -webkit-appearance: none;
+}
+input{
+    outline: none;
+}
+.box_sizing{
+    box-sizing: border-box;
+    -moz-box-sizing: border-box; /* Firefox */
+    -webkit-box-sizing: border-box; /* Safari */
+}
+
+.hidden2,
+.hidden3,
+.hidden4,
+.hidden5 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+.hidden1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.hidden2 {
+    -webkit-line-clamp: 2;
+}
+.hidden3 {
+    -webkit-line-clamp: 3;
+}
+.hidden4 {
+    -webkit-line-clamp: 4;
+}
+.hidden5 {
+    -webkit-line-clamp: 5;
+}
+.all{
+    width: 100%;
+    height: 100vh;
+    background: url(../img/bg.jpg) no-repeat center center;
+    background-size: cover;
+    position: relative;
+}
+.title{
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    margin-top: 9vh;
+}
+.title img{
+    width: 120vh;
+    height: 7.917vh;
+}
+.foot{
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    color: #ffffff;
+    text-align: center;
+    padding-bottom: 1.13vh;
+    /*margin-top: 139px;*/
+}
+.foot p{
+    font-size: 1.296vh;
+    line-height: 2.592vh;
+}
+.login{
+    width: 110vh;
+    margin: 8.148vh auto 0;
+    background: #fff;
+    box-shadow: 0vh 0vh 3.481vh 0.222vh
+    #161616;
+    padding: 6vh 0 6vh;
+}
+.login_l{
+    width: 70.278vh;
+}
+.login_r{
+    width: 50vh;
+    text-align: center;
+    position: relative;
+}
+.login_r:before{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1px;
+    height: 100%;
+    background-color: #dcdcdc;
+}
+.login_r h2{
+    width: 100%;
+    display: inline-block;
+    font-size: 2.778vh;
+    color: #d10f1a;
+    margin-bottom: 20px;
+}
+.account{
+    width: 32.87vh;
+    margin: 0 auto;
+}
+.account label{
+    display: block;
+    width: 32.87vh;
+    height: 4.259vh;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    border: solid 1px #eeeeee;
+    margin-top: 20px;
+}
+.account span{
+    display: block;
+    width: 5.556vh;
+    line-height: 4.259vh;
+    font-size: 1.481vh;
+    color: #666666;
+    border-right: 1px solid #eee;
+}
+.account input{
+    width: 26vh;
+    padding-left: 1vh;
+    border: none;
+    line-height: 4.259vh;
+    background: #f9f9f9;
+}
+
+.btn{
+    display: block;
+    margin: 3.704vh auto 0;
+    width: 33.148vh;
+    height: 4.259vh;
+    line-height: 4.259vh;
+    background-color: #c21b1d;
+    border-radius: 4px;
+    font-size: 1.667vh;
+    color: #fffefe;
+}
