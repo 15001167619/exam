@@ -121,28 +121,32 @@ public class ExamQuestion extends DataEntity<ExamQuestion> {
 
 	public static Map<String,Object> toMap(ExamQuestion examQuestion){
 		Map<String, Object> map = new HashMap<>(9);
-		map.put("questionId",examQuestion.getId());
-		map.put("type",examQuestion.getType());
-		map.put("question",examQuestion.getQuestion());
-		JSONObject options = JSONObject.parseObject(examQuestion.getAnswerContent());
-		Map<String, Object> answerContentMap = new HashMap<>(7);
-		if(examQuestion.getType() == 0 || examQuestion.getType() == 2){
-			map.put("questionType",examQuestion.getType() == 0?"单选题":"多选题");
-			answerContentMap.put("A",options.getString("A"));
-			answerContentMap.put("B",options.getString("B"));
-			answerContentMap.put("C",options.getString("C"));
-			answerContentMap.put("D",options.getString("D"));
-			answerContentMap.put("E",options.getString("E"));
-			answerContentMap.put("F",options.getString("F"));
-		}else {
-			map.put("questionType","判断题");
-		}
-		map.put("correctAnswer", options.getString("answer"));
-		map.put("answerContent", answerContentMap);
-		map.put("score", examQuestion.getScore());
-		map.put("correct", examQuestion.getCorrect());
-		map.put("userAnswer", examQuestion.getUserAnswer());
-		return map;
+        try {
+            map.put("questionId",examQuestion.getId());
+            map.put("type",examQuestion.getType());
+            map.put("question",examQuestion.getQuestion());
+            JSONObject options = JSONObject.parseObject(examQuestion.getAnswerContent());
+            Map<String, Object> answerContentMap = new HashMap<>(7);
+            if(examQuestion.getType() == 0 || examQuestion.getType() == 2){
+                map.put("questionType",examQuestion.getType() == 0?"单选题":"多选题");
+                answerContentMap.put("A",options.getString("A"));
+                answerContentMap.put("B",options.getString("B"));
+                answerContentMap.put("C",options.getString("C"));
+                answerContentMap.put("D",options.getString("D"));
+                answerContentMap.put("E",options.getString("E"));
+                answerContentMap.put("F",options.getString("F"));
+            }else {
+                map.put("questionType","判断题");
+            }
+            map.put("correctAnswer", options.getString("answer"));
+            map.put("answerContent", answerContentMap);
+            map.put("score", examQuestion.getScore());
+            map.put("correct", examQuestion.getCorrect());
+            map.put("userAnswer", examQuestion.getUserAnswer());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return map;
 	}
 	
 }
