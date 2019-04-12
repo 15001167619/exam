@@ -118,9 +118,20 @@ public class ExamController {
         Collections.shuffle(ids);
         Collections.shuffle(ids);
         Collections.shuffle(ids);
+
+
         if(ids.size()>0){
+            List<ExamQuestion> questions = new ArrayList<>(ids.size());
             List<ExamQuestion> examQuestionList = examQuestionService.findExamQuestionByIds(ids);
-            List<Map<String, Object>> resultMap = examQuestionList
+            for (Integer questionId : ids) {
+                for (ExamQuestion question : examQuestionList) {
+                    if(String.valueOf(questionId).equals(question.getId())){
+                        questions.add(question);
+                        break;
+                    }
+                }
+            }
+            List<Map<String, Object>> resultMap = questions
                     .stream()
                     .map(ExamQuestion::toMap)
                     .collect(Collectors.toList());
