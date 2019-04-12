@@ -18,7 +18,7 @@
 </head>
 <body>
 
-<form id="loginForm" name="loginIndexFirst">
+<form id="loginForm" name="loginIndexFirst" method="post">
 	<input type="hidden" id="useType" name="useType" value="2">
 	<input type="hidden" id="userName" name="userName">
 	<input type="hidden" id="company" name="company" >
