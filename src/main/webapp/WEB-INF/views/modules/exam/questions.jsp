@@ -147,10 +147,7 @@
                         chk_userAnswer.push($(this).val());
                     });
                     if(chk_userAnswer.length == 0){
-                        swal({
-                            title: '您有未完成的试题',
-                            confirmButtonColor: '#d33'
-                        })
+                        alert("您有未完成的试题")
                         return;
                     }
                 }else {
@@ -158,10 +155,7 @@
                     var radioName = 'radio_'+questionIdArrays[i];
                     var select_Id = $('input[name="'+radioName+'"]:checked').val();
                     if(typeof(select_Id) =="undefined"){
-                        swal({
-                            title: '您有未完成的试题',
-                            confirmButtonColor: '#d33'
-                        })
+                        alert("您有未完成的试题")
                         return;
                     }
                 }
