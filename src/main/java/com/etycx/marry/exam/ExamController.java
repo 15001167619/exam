@@ -47,7 +47,7 @@ public class ExamController {
 
     @RequestMapping(value = "questions")
     public String loginFirst(String userName, String studentId,String company, String scene, Integer useType,Model model) {
-        if(StringUtils.isBlank(userName) || StringUtils.isBlank(studentId) || StringUtils.isBlank(company) || StringUtils.isBlank(scene)){
+        if(StringUtils.isBlank(userName) || StringUtils.isBlank(studentId)){
             return "redirect:a";
         }
         setUserInfo(userName,studentId,company,scene,model);
