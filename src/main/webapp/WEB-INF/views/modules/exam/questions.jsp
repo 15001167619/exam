@@ -24,6 +24,23 @@
 <script type="text/javascript">var ctx = '${ctx}', ctxStatic='${ctxStatic}';</script>
 <link href="${ctxStatic}/myalert/sweetalert.css" type="text/css" rel="stylesheet" />
 <script src="${ctxStatic}/myalert/sweetalert.min.js" type="text/javascript"></script>
+
+<style type="text/css">
+    .navbar-inner {
+        background: linear-gradient(to bottom,#c71c22,#c26e1b)!important;
+    }
+    .navbar .nav>li>a:focus, .navbar .nav>li>a:hover {
+        background: linear-gradient(to bottom,#c71c22,#c26e1b)!important;
+    }
+    .navbar .nav>li>a:focus, .navbar .nav>li>a:visited {
+        background: linear-gradient(to bottom,#c71c22,#c26e1b)!important;
+    }
+    .btn-primary {
+        background: linear-gradient(to bottom,#c71c22,#c26e1b)!important;
+    }
+
+</style>
+
 <body>
 
 <div id="main">
@@ -103,13 +120,7 @@
 </table>
 
 <div id="foot" class="navbar navbar-fixed-foot">
-    <div class="navbar-inner">
-        <div class="brand"><span id="productNameFoot" style="margin-left: 20px">请再次确认答题完毕</span></div>
-        <ul id="userControlFoot" class="nav pull-right">
-            <li><a href="#" title="提交答案" onclick="submitExam()">提交答案</a></li>
-            <li>&nbsp;</li>
-        </ul>
-    </div>
+    <div style="text-align: center;"><input class="btn btn-large btn-primary" type="button"  value="提交答案"  onclick="submitExam()"/>&nbsp;&nbsp;</div>
 </div>
 
 <script>
