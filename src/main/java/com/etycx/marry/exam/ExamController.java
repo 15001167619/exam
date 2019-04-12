@@ -35,6 +35,11 @@ public class ExamController {
         return "modules/exam/indexFirst";
     }
 
+    @RequestMapping(value = "examination")
+    public String examination() {
+        return "modules/exam/indexFirst";
+    }
+
     @RequestMapping(value = "youngPioneers")
     public String loginIndexSecond() {
         return "modules/exam/indexSecond";

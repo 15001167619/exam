@@ -201,12 +201,28 @@ input{
     padding: 6vh 0 6vh;
 }
 .login_l{
-    width: 70.278vh;
+    width: 65vh;
+    padding: 0 5vh;
+}
+.login_l h2{
+    font-size: 1.852vh;
+    line-height: 2.593vh;
+    color: #333333;
+    font-weight: bold;
+}
+.login_l p{
+    font-size: 1.296vh;
+    line-height: 2.3vh;
+    color: #555555;
+    margin-top: 1.1vh;
 }
 .login_r{
-    width: 50vh;
+    width: 45vh;
     text-align: center;
     position: relative;
+}
+.login_l{
+
 }
 .login_r:before{
     content: '';
@@ -249,6 +265,14 @@ input{
     width: 26vh;
     padding-left: 1vh;
     border: none;
+    line-height: 4.259vh;
+    background: #f9f9f9;
+}
+.account select{
+    width: 26vh;
+    padding-left: 1vh;
+    border: none;
+    height: 4.259vh;
     line-height: 4.259vh;
     background: #f9f9f9;
 }

@@ -19,7 +19,7 @@
 <body>
 
 <form id="loginForm" name="loginIndexFirst" method="post">
-    <input type="hidden" id="useType" name="useType" value="1">
+    <input type="hidden" id="useType" name="useType">
     <input type="hidden" id="userName" name="userName">
     <input type="hidden" id="company" name="company" >
     <input type="hidden" id="studentId" name="studentId" >
@@ -44,8 +44,11 @@
                     <input class="company fl" type="text">
                 </label>
                 <label>
-                    <span class="fl">考场</span>
-                    <input class="room fl" type="text">
+                    <span class="fl">类型</span>
+                    <select name="" class="room fl">
+                        <option value="1">共青团</option>
+                        <option value="2">少先队</option>
+                    </select>
                 </label>
                 <label>
                     <span class="fl">考号</span>
@@ -93,8 +96,9 @@
         }
         $('#userName').val(n);
         $('#company').val(c);
-        $('#scene').val(r);
+       /* $('#scene').val(r);*/
         $('#studentId').val(num);
+        $('#useType').val(r);
         document.loginIndexFirst.action = "<c:url value='questions'/>";
         document.loginIndexFirst.submit();
     });
