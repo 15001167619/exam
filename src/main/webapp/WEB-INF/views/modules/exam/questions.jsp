@@ -57,7 +57,7 @@
                 <li id="userInfo" class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown"  title="个人信息" href ="javascript:return false;" onclick="return false;">您好, ${userName}&nbsp; 您的单位:${company}&nbsp;您的场次:${scene}&nbsp;您的考号:${studentId}&nbsp;</a>
                 </li>
-                <li><a href="${logout}" title="退出考试">退出考试</a></li>
+                <%--<li><a href="${logout}" title="退出考试">退出考试</a></li>--%>
                 <li>&nbsp;</li>
             </ul>
         </div>
