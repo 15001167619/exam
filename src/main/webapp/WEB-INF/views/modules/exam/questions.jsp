@@ -126,7 +126,7 @@
 </table>
 
 <div id="foot" class="navbar navbar-fixed-foot">
-    <div style="text-align: center;"><input class="btn btn-large btn-primary" type="button"  value="提交答案"  onclick="submitExam()"/>&nbsp;&nbsp;</div>
+    <div style="text-align: center;"><input class="btn btn-large btn-primary" type="button"  value="确认交卷"  onclick="submitExam()"/>&nbsp;&nbsp;</div>
 </div>
 
 <script>
