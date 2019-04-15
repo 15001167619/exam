@@ -52,10 +52,10 @@ public class ExamController {
         }
         setUserInfo(userName,studentId,company,scene,model);
         String examName = getExamName();
-        String groupName = "中学组";
+        String groupName = "共青团";
         String logout = "logoutFirst";
         if(useType == 2){
-            groupName = "小学组";
+            groupName = "少先队";
             logout = "logoutSecond";
         }
         model.addAttribute("examQuestions", getExamQuestions(examName, useType));

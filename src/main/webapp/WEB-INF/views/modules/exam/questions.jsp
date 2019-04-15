@@ -134,109 +134,107 @@
 
 <script>
     function submitExam() {
-        //答题录入考试
-        debugger;
-        var questionIds = $("#questionIds").val();
-        var studentId = $("#studentId").val();
-        if(questionIds!=''){
-            var questionIdArrays = questionIds.split(',');
-            for ( var i = 0; i <questionIdArrays.length; i++){
-                var questionType = $("#questionType_"+questionIdArrays[i]).val();
-                if(questionType == 2){
-                    var chk_userAnswer =[];
-                    var checkboxName = 'checkbox_'+questionIdArrays[i];
-                    $('input[name="'+checkboxName+'"]:checked').each(function(){
-                        chk_userAnswer.push($(this).val());
-                    });
-                    if(chk_userAnswer.length == 0){
-                        alert("您有未完成的试题")
-                        return;
-                    }
-                }else {
-                    //校验是否有未完成的试题
-                    var radioName = 'radio_'+questionIdArrays[i];
-                    var select_Id = $('input[name="'+radioName+'"]:checked').val();
-                    if(typeof(select_Id) =="undefined"){
-                        alert("您有未完成的试题")
-                        return;
-                    }
-                }
+        swal({
+            title : "",
+            text: "感谢您参加2019年房山区教育系统团队活动课比赛理论考试。",
+            type: 'success',
+            showCancelButton : true,
+            closeOnConfirm : false,
+            animation : "slide-from-top"
+        }, function(inputValue) {
+            if(inputValue){
+                //答题录入考试
+                var questionIds = $("#questionIds").val();
+                var studentId = $("#studentId").val();
+                if(questionIds!=''){
+                    var questionIdArrays = questionIds.split(',');
+                    for ( var i = 0; i <questionIdArrays.length; i++){
+                        var questionType = $("#questionType_"+questionIdArrays[i]).val();
+                        if(questionType == 2){
+                            var chk_userAnswer =[];
+                            var checkboxName = 'checkbox_'+questionIdArrays[i];
+                            $('input[name="'+checkboxName+'"]:checked').each(function(){
+                                chk_userAnswer.push($(this).val());
+                            });
+                            if(chk_userAnswer.length == 0){
+                                alert("您有未完成的试题")
+                                return;
+                            }
+                        }else {
+                            //校验是否有未完成的试题
+                            var radioName = 'radio_'+questionIdArrays[i];
+                            var select_Id = $('input[name="'+radioName+'"]:checked').val();
+                            if(typeof(select_Id) =="undefined"){
+                                alert("您有未完成的试题")
+                                return;
+                            }
+                        }
 
-            }
-            for ( var j = 0; j <questionIdArrays.length; j++){
-                // 0错误1为正确
-                var correct = 0;
-                var questionId = $("#question_"+questionIdArrays[j]).val();
-                var userAnswer;
-                var questionType = $("#questionType_"+questionIdArrays[j]).val();
-                if(questionType == 2){
-                    //用户选择
-                    var chk_userAnswer =[];
-                    var checkboxName = 'checkbox_'+questionIdArrays[j];
-                    $('input[name="'+checkboxName+'"]:checked').each(function(){
-                        chk_userAnswer.push($(this).val());
-                    });
-                    var question_value = $("#answer_"+questionIdArrays[j]).val().split(',');
-                    if(equar(chk_userAnswer,question_value)){
-                        correct = 1;
                     }
-                    userAnswer = chk_userAnswer.join(',');
-                }else {
-                    var radioName = 'radio_'+questionIdArrays[j];
-                    userAnswer = $('input[name="'+radioName+'"]:checked').val();
-                    var answerId = $("#answer_"+questionIdArrays[j]).val();
-                    if(userAnswer == answerId){
-                        correct = 1;
+                    for ( var j = 0; j <questionIdArrays.length; j++){
+                        // 0错误1为正确
+                        var correct = 0;
+                        var questionId = $("#question_"+questionIdArrays[j]).val();
+                        var userAnswer;
+                        var questionType = $("#questionType_"+questionIdArrays[j]).val();
+                        if(questionType == 2){
+                            //用户选择
+                            var chk_userAnswer =[];
+                            var checkboxName = 'checkbox_'+questionIdArrays[j];
+                            $('input[name="'+checkboxName+'"]:checked').each(function(){
+                                chk_userAnswer.push($(this).val());
+                            });
+                            var question_value = $("#answer_"+questionIdArrays[j]).val().split(',');
+                            if(equar(chk_userAnswer,question_value)){
+                                correct = 1;
+                            }
+                            userAnswer = chk_userAnswer.join(',');
+                        }else {
+                            var radioName = 'radio_'+questionIdArrays[j];
+                            userAnswer = $('input[name="'+radioName+'"]:checked').val();
+                            var answerId = $("#answer_"+questionIdArrays[j]).val();
+                            if(userAnswer == answerId){
+                                correct = 1;
+                            }
+                        }
+                        addExamReply(createUserExamReply(questionId,userAnswer,correct));
                     }
-                }
-                addExamReply(createUserExamReply(questionId,userAnswer,correct));
-            }
-
-            //提交试题
-            var userExamReplyText = JSON.stringify(userExamReplyArray);
-            var useType = $("#useType").val();
-            var paperId = $("#paperId").val();
-            var userName = $("#userName").val();
-            var company = $("#company").val();
-            var scene = $("#scene").val();
-            $.ajax({
-                url: "<c:url value='addExamReply'/>",
-                type:"POST",
-                cache: true,
-                async: false,
-                dataType:"json",
-                data: {
-                    userExamReplyArray:userExamReplyText,
-                    questionIds:questionIds,
-                    useType:useType,
-                    paperId:paperId,
-                    userName:userName,
-                    company:company,
-                    scene:scene,
-                    studentId:studentId
-                },
-                success: function (data) {
-                    if(data==true){
-                        swal({
-                            title : "",
-                            text: "感谢您参加2019年房山区教育系统团队活动课比赛理论考试。",
-                            type: 'success',
-                            showCancelButton : true,
-                            closeOnConfirm : false,
-                            animation : "slide-from-top"
-                        }, function(inputValue) {
-                            if(inputValue){
-                                window.location.href = "<c:url value='examination'/>"
-                            }else {
+                    //提交试题
+                    var userExamReplyText = JSON.stringify(userExamReplyArray);
+                    var useType = $("#useType").val();
+                    var paperId = $("#paperId").val();
+                    var userName = $("#userName").val();
+                    var company = $("#company").val();
+                    var scene = $("#scene").val();
+                    $.ajax({
+                        url: "<c:url value='addExamReply'/>",
+                        type:"POST",
+                        cache: true,
+                        async: false,
+                        dataType:"json",
+                        data: {
+                            userExamReplyArray:userExamReplyText,
+                            questionIds:questionIds,
+                            useType:useType,
+                            paperId:paperId,
+                            userName:userName,
+                            company:company,
+                            scene:scene,
+                            studentId:studentId
+                        },
+                        success: function (data) {
+                            if(data==true){
                                 window.location.href = "<c:url value='examination'/>"
                             }
-                        })
-                    }
+                        }
+                    });
                 }
-            });
+            }
+        })
 
 
-        }
+
+
 
     }
 
