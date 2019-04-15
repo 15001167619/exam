@@ -24,6 +24,7 @@
 <script type="text/javascript">var ctx = '${ctx}', ctxStatic='${ctxStatic}';</script>
 <link href="${ctxStatic}/myalert/sweetalert.css" type="text/css" rel="stylesheet" />
 <script src="${ctxStatic}/myalert/sweetalert.min.js" type="text/javascript"></script>
+<title>房山区教育系统团队活动课比赛理论考试</title>
 
 <style type="text/css">
     .navbar-inner {
@@ -134,43 +135,51 @@
 
 <script>
     function submitExam() {
-        swal({
-            title : "",
-            text: "感谢您参加2019年房山区教育系统团队活动课比赛理论考试。",
-            type: 'success',
-            showCancelButton : true,
-            closeOnConfirm : false,
-            animation : "slide-from-top"
-        }, function(inputValue) {
-            if(inputValue){
-                //答题录入考试
-                var questionIds = $("#questionIds").val();
-                var studentId = $("#studentId").val();
-                if(questionIds!=''){
-                    var questionIdArrays = questionIds.split(',');
-                    for ( var i = 0; i <questionIdArrays.length; i++){
-                        var questionType = $("#questionType_"+questionIdArrays[i]).val();
-                        if(questionType == 2){
-                            var chk_userAnswer =[];
-                            var checkboxName = 'checkbox_'+questionIdArrays[i];
-                            $('input[name="'+checkboxName+'"]:checked').each(function(){
-                                chk_userAnswer.push($(this).val());
-                            });
-                            if(chk_userAnswer.length == 0){
-                                alert("您有未完成的试题")
-                                return;
-                            }
-                        }else {
-                            //校验是否有未完成的试题
-                            var radioName = 'radio_'+questionIdArrays[i];
-                            var select_Id = $('input[name="'+radioName+'"]:checked').val();
-                            if(typeof(select_Id) =="undefined"){
-                                alert("您有未完成的试题")
-                                return;
-                            }
-                        }
-
+        //答题录入考试
+        var questionIds = $("#questionIds").val();
+        var studentId = $("#studentId").val();
+        if(questionIds!=''){
+            var questionIdArrays = questionIds.split(',');
+            for ( var i = 0; i <questionIdArrays.length; i++){
+                var questionType = $("#questionType_"+questionIdArrays[i]).val();
+                if(questionType == 2){
+                    var chk_userAnswer =[];
+                    var checkboxName = 'checkbox_'+questionIdArrays[i];
+                    $('input[name="'+checkboxName+'"]:checked').each(function(){
+                        chk_userAnswer.push($(this).val());
+                    });
+                    if(chk_userAnswer.length == 0){
+                        swal({
+                            title: '您有未完成的试题',
+                            confirmButtonColor: '#d33'
+                        })
+                        return;
                     }
+                }else {
+                    //校验是否有未完成的试题
+                    var radioName = 'radio_'+questionIdArrays[i];
+                    var select_Id = $('input[name="'+radioName+'"]:checked').val();
+                    if(typeof(select_Id) =="undefined"){
+                        swal({
+                            title: '您有未完成的试题',
+                            confirmButtonColor: '#c71c22'
+                        })
+                        return;
+                    }
+                }
+
+            }
+
+            swal({
+                title : "",
+                text: "感谢您参加2019年房山区教育系统团队活动课比赛理论考试。",
+                type: 'success',
+                showCancelButton : true,
+                confirmButtonColor: '#c71c22',
+                closeOnConfirm : false,
+                animation : "slide-from-top"
+            }, function(inputValue) {
+                if(inputValue){
                     for ( var j = 0; j <questionIdArrays.length; j++){
                         // 0错误1为正确
                         var correct = 0;
@@ -224,18 +233,25 @@
                         },
                         success: function (data) {
                             if(data==true){
-                                window.location.href = "<c:url value='examination'/>"
+                                swal({
+                                    title : "",
+                                    text: "感谢您参加2019年房山区教育系统团队活动课比赛理论考试。",
+                                    type: 'success',
+                                    showCancelButton : true,
+                                    closeOnConfirm : false,
+                                    animation : "slide-from-top"
+                                }, function(inputValue) {
+                                    if(inputValue){
+                                        window.location.href = "<c:url value='examination'/>"
+                                    }
+                                })
                             }
                         }
                     });
+                    window.location.href = "<c:url value='examination'/>"
                 }
-            }
-        })
-
-
-
-
-
+            })
+        }
     }
 
     function equar(a, b) {
@@ -267,11 +283,6 @@
         userExamReply.correct = correct;
         userExamReply.studentId = $("#studentId").val();
         return userExamReply;
-    }
-
-    function js_delete() {
-
-
     }
 
 </script>

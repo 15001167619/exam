@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <head>
     <meta charset="UTF-8">
-    <title>首页</title>
+    <title>房山区教育系统团队活动课比赛理论考试</title>
     <!-- saved from url=(0014)about:internet -->
     <meta http-equiv="X-UA-Compatible" content="IE=Edge，chrome=1">
     <meta name="viewport"
